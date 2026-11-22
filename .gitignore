@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+estudo/renders/
+estudo/teste/
+estudo/previa/
+estudo/pg-*.png
+estudo/chk.html
+estudo/*.log
+estudo/partes-mundo/
+estudo/partes-explodida/
+guia/i18n/

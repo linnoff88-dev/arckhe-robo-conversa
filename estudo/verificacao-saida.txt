@@ -1,0 +1,167 @@
+{
+  "status": "estudo; não liberado para impressão final",
+  "pecas": {
+    "moldura": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        214.0,
+        151.0,
+        7.2
+      ],
+      "volume_cm3": 108.7,
+      "area_apoio_mesa_mm2": 18006,
+      "geometria_basica_ok": true
+    },
+    "placa-traseira": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        214.0,
+        151.0,
+        12.4
+      ],
+      "volume_cm3": 200.3,
+      "area_apoio_mesa_mm2": 24667,
+      "geometria_basica_ok": true
+    },
+    "bolso-do-pi": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        122.0,
+        94.0,
+        44.0
+      ],
+      "volume_cm3": 50.1,
+      "area_apoio_mesa_mm2": 4204,
+      "geometria_basica_ok": true
+    },
+    "tampa": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        122.0,
+        94.0,
+        3.0
+      ],
+      "volume_cm3": 26.9,
+      "area_apoio_mesa_mm2": 8975,
+      "geometria_basica_ok": true
+    },
+    "adaptador-pi-sem-caixa": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        98.8,
+        70.8,
+        8.0
+      ],
+      "volume_cm3": 12.8,
+      "area_apoio_mesa_mm2": 4093,
+      "geometria_basica_ok": true
+    },
+    "base-e-pescoco": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        210.0,
+        140.0,
+        86.8
+      ],
+      "volume_cm3": 289.6,
+      "area_apoio_mesa_mm2": 29113,
+      "geometria_basica_ok": true
+    }
+  },
+  "checagens": {
+    "interferencia_pares_mm3": {
+      "moldura×placa": 0.0,
+      "moldura×caixa": 0.0,
+      "moldura×tampa": 0.0,
+      "placa×caixa": 0.0,
+      "placa×tampa": 0.0,
+      "caixa×tampa": -0.0
+    },
+    "interferencia_tela_moldura_mm3": 0.0,
+    "interferencia_tela_caixa_mm3": 0.0,
+    "interferencia_tela_tampa_mm3": 0.0,
+    "interferencia_placa_do_driver_moldura_mm3": 0.0,
+    "interferencia_placa_do_driver_placa_mm3": 0.0,
+    "interferencia_placa_do_driver_caixa_mm3": 0.0,
+    "interferencia_placa_do_driver_tampa_mm3": 0.0,
+    "interferencia_caixa_pi_maxima_moldura_mm3": 0.0,
+    "interferencia_caixa_pi_maxima_placa_mm3": 0.0,
+    "interferencia_caixa_pi_maxima_caixa_mm3": 0.0,
+    "interferencia_caixa_pi_maxima_tampa_mm3": 0.0,
+    "interferencia_pi_sem_caixa_caixa_mm3": 0.0,
+    "interferencia_pi_sem_caixa_tampa_mm3": 0.0,
+    "interferencia_pi_sem_caixa_placa_mm3": 0.0,
+    "interferencia_pi_sem_caixa_moldura_mm3": 0.0,
+    "interferencia_adaptador_caixa_mm3": 0.0,
+    "interferencia_adaptador_tampa_mm3": 0.0,
+    "interferencia_adaptador_placa_mm3": 0.0,
+    "interferencia_adaptador_moldura_mm3": 0.0,
+    "interferencia_pi_sem_caixa_adaptador_mm3": -0.0,
+    "interferencia_moldura_pescoco_mm3": 0.0,
+    "interferencia_placa_pescoco_mm3": 0.0,
+    "interferencia_caixa_pescoco_mm3": 0.0,
+    "interferencia_tampa_pescoco_mm3": 0.0,
+    "negativo_caixa_larga_mm3": 1159.5,
+    "negativo_caixa_grossa_mm3": 10595.4,
+    "retirada_da_caixa_pelas_costas": "passou (3 posições) para o envelope retangular, tampa removida",
+    "parafusos_do_pescoco_passam_pela_parede": "passou (4 posições, cilindro de 2,8 mm livre)",
+    "contato_pescoco_queixo_mm3": 443.8,
+    "corredor_de_cabos_12mm": "livre: vão da caixa → boca do pescoço (sem colisão com nenhuma peça)",
+    "saida_de_cabos_atras": "aberta (0 mm³ dentro do vão) e cercada pela parede (1280 mm³ ao redor)",
+    "estabilidade": {
+      "massa_estimada_g": 673,
+      "centro_de_massa_mm": [
+        -0.1,
+        26.9,
+        115.3
+      ],
+      "margem_ate_a_borda_traseira_mm": 65.1,
+      "margem_ate_a_borda_dianteira_mm": 74.9,
+      "forca_no_topo_que_tomba_para_tras_N_sem_parafusos": 2.0,
+      "altura_do_topo_mm": 210.9
+    }
+  },
+  "parametros": {
+    "tela_mm": [
+      194.0,
+      111.0
+    ],
+    "janela_mm": [
+      158.0,
+      90.0
+    ],
+    "inclinacao_graus": 12.0,
+    "altura_borda_inferior_mm": 62.0,
+    "bolso_caixa_mm": [
+      100.0,
+      72.0,
+      44.0
+    ],
+    "caixa_maxima_mm": [
+      98.0,
+      68.0,
+      30.5
+    ]
+  },
+  "limites": [
+    "Sem fatiamento nem teste físico: os STL são de ESTUDO.",
+    "Contorno da tela, posição da área visível, furos e conectores vêm da folha de dados; conferir com paquímetro.",
+    "A tela oficial de 7\" (800x480) é a de referência. A Touch Display 2 tem outro contorno (189,5 x 120 mm): mudar os parâmetros.",
+    "A placa do driver da tela e os parafusos reais não foram modelados; foi reservado um vão de 104 x 72 x 10 mm.",
+    "O espaço para a caixa do Pi é um limite (98 x 68 x 30,5 mm), não o desenho de uma caixa específica.",
+    "Estabilidade estimada com massas aproximadas; sem os parafusos na mesa um toque firme pode tombar o robô.",
+    "Sem análise de resistência dos pilotos de parafuso nem de aquecimento do Pi dentro do bolso."
+  ]
+}

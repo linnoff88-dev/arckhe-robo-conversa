@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rosto do robô</title>
+<style>
+  html,body{margin:0;height:100%;background:#0c0c10;overflow:hidden;cursor:none;user-select:none}
+  canvas{display:block;width:100vw;height:100vh}
+</style></head><body>
+<canvas id="c" width="800" height="480"></canvas>
+<script>
+// Rosto do robô (800x480). Estados vêm da ponte por SSE: dormindo, ouvindo, pensando, falando, feliz.
+const C = document.getElementById('c'), g = C.getContext('2d');
+const AMARELO = '#FACC15', FUNDO = '#0c0c10', AZUL = '#38bdf8';
+let estado = 'ocioso', nivel = 0, nivelAlvo = 0, piscar = 0, proxPiscar = 2, olhaX = 0, olhaY = 0, alvoX = 0, alvoY = 0, t0 = performance.now();
+
+function rr(x, y, w, h, r) { g.beginPath(); g.roundRect(x - w / 2, y - h / 2, w, h, r); g.fill(); }
+
+function quadro(now) {
+  const t = (now - t0) / 1000;
+  g.fillStyle = FUNDO; g.fillRect(0, 0, 800, 480);
+  // piscar
+  if (t > proxPiscar) { piscar = 1; proxPiscar = t + 2 + Math.random() * 3.5; }
+  piscar = Math.max(0, piscar - 0.12);
+  const fechado = estado === 'dormindo' ? 1 : (piscar > 0 ? Math.sin(piscar * Math.PI) : 0);
+  // para onde olhar
+  if (estado === 'pensando') { alvoX = -60; alvoY = -40; }
+  else if (estado === 'ouvindo' || estado === 'falando') { alvoX = 0; alvoY = 0; }
+  else if (Math.random() < 0.008) { alvoX = (Math.random() - .5) * 90; alvoY = (Math.random() - .5) * 40; }
+  olhaX += (alvoX - olhaX) * 0.08; olhaY += (alvoY - olhaY) * 0.08;
+  nivel += (nivelAlvo - nivel) * 0.45;
+  const grande = estado === 'ouvindo' ? 1.12 : 1;
+  const w = 150 * grande, h = (190 * grande) * (1 - 0.93 * fechado);
+  g.fillStyle = AMARELO;
+  const hh = estado === 'feliz' ? h * 0.55 : h;
+  rr(250 + olhaX, 190 + olhaY, w, Math.max(hh, 8), 40);
+  rr(550 + olhaX, 190 + olhaY, w, Math.max(hh, 8), 40);
+  if (estado === 'feliz') {            // sorriso: apaga a metade de baixo dos olhos
+    g.fillStyle = FUNDO; rr(250 + olhaX, 190 + olhaY + h * 0.22, w + 20, h * 0.5, 0); rr(550 + olhaX, 190 + olhaY + h * 0.22, w + 20, h * 0.5, 0);
+  }
+  // boca: barra que abre com o NÍVEL DA RESPOSTA (o microfone não mexe nela)
+  g.fillStyle = AMARELO;
+  if (estado === 'falando') rr(400, 395, 190, 10 + nivel * 80, 14);
+  else if (estado === 'feliz') { g.beginPath(); g.arc(400, 360, 70, 0.15 * Math.PI, 0.85 * Math.PI); g.lineWidth = 14; g.lineCap = 'round'; g.strokeStyle = AMARELO; g.stroke(); }
+  else rr(400, 400, 120, 10, 5);
+  // sinais de estado
+  if (estado === 'ouvindo') { g.strokeStyle = AZUL; g.lineWidth = 6; g.globalAlpha = .5 + .4 * Math.sin(t * 6); g.beginPath(); g.roundRect(8, 8, 784, 464, 30); g.stroke(); g.globalAlpha = 1; }
+  if (estado === 'pensando') { for (let i = 0; i < 3; i++) { g.fillStyle = AMARELO; g.globalAlpha = .3 + .7 * Math.max(0, Math.sin(t * 5 - i)); g.beginPath(); g.arc(360 + i * 40, 430, 9, 0, 7); g.fill(); } g.globalAlpha = 1; }
+  if (estado === 'dormindo') { g.fillStyle = '#6b7280'; g.font = '700 40px sans-serif'; g.fillText('z z z', 560, 110); }
+  requestAnimationFrame(quadro);
+}
+requestAnimationFrame(quadro);
+
+function ligar() {
+  const es = new EventSource('/estado');
+  es.onmessage = e => { const d = JSON.parse(e.data); if (d.estado) estado = d.estado; if (d.nivel !== undefined) nivelAlvo = d.nivel; };
+  es.onerror = () => { es.close(); setTimeout(ligar, 1500); };
+}
+const Q = new URLSearchParams(location.search);
+if (Q.get('estado')) { estado = Q.get('estado'); nivelAlvo = 0.6; } else ligar();   // ?estado=falando só para ver/fotografar
+// Toque na tela (ou espaço): começa a ouvir; toque de novo: termina e manda ao Jarvis.
+let gravando = false;
+async function alternar() {
+  try { await fetch(gravando ? '/parar' : '/ouvir', { method: 'POST' }); gravando = !gravando; } catch (e) {}
+}
+document.addEventListener('pointerdown', alternar);
+document.addEventListener('keydown', e => { if (e.code === 'Space') alternar(); });
+setInterval(() => { if (estado !== 'ouvindo') gravando = false; }, 500);
+</script></body></html>

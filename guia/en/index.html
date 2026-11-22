@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<!-- TEMPLATE projetos-landing-guia. Robô conversa. NAO reescreva o CSS.
+     TRILINGUE: este arquivo e a versao PT (guia/index.html). As versoes guia/en/index.html e
+     guia/es/index.html sao copias traduzidas: lang="en"/"es", seletor com a.on no idioma,
+     hrefs do seletor ../ e ../es/ (ou ../en/), e imagens assets/ -> ../assets/. -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Robô conversa — a tabletop robot that talks to your Jarvis</title>
+<meta content="Raspberry Pi 3 with a 7-inch display in a 3D-printed mount, with an animated face that listens to you and talks to your Jarvis server. Parts, STL files, software, and step-by-step instructions." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12.12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(250,204,21,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.16),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3.1fr)} .g4{grid-template-columns:repeat(4.1fr)} .g2{grid-template-columns:repeat(2.1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(250,204,21,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0.1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+<link href="https://inematds.github.io/robo-conversa/guia/en/" rel="canonical"/><link href="https://inematds.github.io/robo-conversa/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/robo-conversa/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/robo-conversa/guia/es/" hreflang="es" rel="alternate"/><link href="https://inematds.github.io/robo-conversa/guia/" hreflang="x-default" rel="alternate"/>
+
+
+
+<meta content="Robô conversa — a tabletop robot that talks to your Jarvis" property="og:title"/><meta content="Raspberry Pi 3 with a 7-inch display in a 3D-printed mount, with an animated face that listens to you and talks to your Jarvis server. Parts, STL files, software, and step-by-step instructions." property="og:description"/><meta content="https://inematds.github.io/robo-conversa/guia/assets/banner-en.jpg" property="og:image"/>
+<style>
+  .techhead{background:var(--bg2);border-top:1px solid var(--amb);padding:42px 0}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  h2{scroll-margin-top:90px}
+  section p,section li{max-width:74ch}
+  li{margin:.5em 0}
+  :focus-visible{outline:3px solid var(--amb);outline-offset:4px}
+  body{overflow-wrap:break-word}
+  figure{margin:0}
+  .foto{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#050507}
+  .foto img{display:block;width:100%;height:auto}
+  .foto figcaption{padding:10px 14px;font-size:.86rem;color:var(--mut);background:var(--card);border-top:1px solid var(--line)}
+  .fotobig{margin-top:26px}
+  .numeros{display:grid;grid-template-columns:repeat(6.1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+  .numeros div{background:var(--bg);padding:22px 12px;text-align:center}
+  .numeros b{display:block;font-family:Sora;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--amb);letter-spacing:-.02em}
+  .numeros span{font-size:.82rem;color:var(--mut)}
+  @media(max-width:820px){.numeros{grid-template-columns:repeat(3.1fr)}}
+  .lado{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:start}
+  @media(max-width:860px){.lado{grid-template-columns:1fr}}
+  .legenda{list-style:none;padding:0;margin:0;counter-reset:l}
+  .legenda li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);margin:0}
+  .legenda li:last-child{border:none}
+  .legenda li::before{counter-increment:l;content:counter(l);width:30px;height:30px;border-radius:8px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .legenda b{display:block;font-family:Sora;font-size:.98rem}
+  .legenda span{color:var(--mut);font-size:.9rem}
+  .viewer{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 50% 35%,#2a2418,#0b0b0e 70%);aspect-ratio:16/10}
+  .viewer model-viewer{width:100%;height:100%;--poster-color:transparent}
+  .viewer .dica{position:absolute;left:14px;bottom:12px;font-size:.8rem;color:#c9c9d2;background:rgba(0.0,0,.55);padding:.35em .7em;border-radius:999px;pointer-events:none}
+  @media(max-width:540px){.viewer{aspect-ratio:4/5}}
+  .cotas{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.cotas{grid-template-columns:1fr}}
+  .cotas figure{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:10px}
+  .cotas svg{display:block;width:100%;height:auto}
+  .cotas figcaption{font-size:.86rem;color:var(--mut);padding:6px 6px 2px}
+  .cota{stroke:var(--amb);stroke-width:.35;fill:none}
+  .cota-t{fill:var(--txt);font:600 3.6px Sora,sans-serif;text-anchor:middle}
+  .cota-s{fill:var(--mut);font:500 3px Inter,sans-serif;text-anchor:middle}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin:14px 0}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:600}
+  .tabela{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .tabela table{margin:0}
+  .tabela tr:last-child td{border-bottom:none}
+  .sim{color:var(--amb);font-weight:600}
+  .ico{width:28px;height:28px;color:var(--amb);margin-bottom:.55em;display:block}
+  .bom .card b.q{float:right;font-family:Sora;color:var(--amb)}
+  .dl{display:grid;grid-template-columns:repeat(2.1fr);gap:16px;margin:22px 0}
+  @media(max-width:680px){.dl{grid-template-columns:1fr}}
+  .dl a.card{display:flex;gap:14px;align-items:center;color:var(--txt);transition:border-color .2s}
+  .dl a.card:hover{border-color:var(--amb)}
+  .dl .ordem{flex:0 0 44px;height:44px;border-radius:12px;background:var(--amb);color:#1a1206;font:800 1.15rem Sora;display:flex;align-items:center;justify-content:center}
+  .dl .ordem.cinza{background:var(--bg2);color:var(--mut);border:1px solid var(--line)}
+  .dl small{display:block;color:var(--mut);font-size:.84rem}
+  .monta{display:grid;grid-template-columns:repeat(2.1fr);gap:18px;counter-reset:m}
+  @media(max-width:680px){.monta{grid-template-columns:1fr}}
+  .monta figure{position:relative}
+  .monta figure::before{counter-increment:m;content:counter(m);position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:10px;background:var(--amb);color:#1a1206;font:800 1.05rem Sora;display:flex;align-items:center;justify-content:center;z-index:2}
+  .monta figcaption b{display:block;color:var(--txt);font-family:Sora;font-size:.98rem;margin-bottom:.2em}
+  .aviso{display:flex;gap:14px;padding:18px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amb);border-radius:12px;margin-top:22px}
+  .aviso svg{flex:0 0 24px;width:24px;height:24px;color:var(--amb)}
+  .aviso p{margin:0}
+  .checks{display:grid;grid-template-columns:repeat(2.1fr);gap:16px}
+  @media(max-width:680px){.checks{grid-template-columns:1fr}}
+  .checks .card b.v{display:block;font:800 1.5rem Sora;color:var(--amb);margin-bottom:.2em}
+  .rotulo{display:inline-block;font:600 .75rem Sora;letter-spacing:.08em;text-transform:uppercase;padding:.2em .6em;border-radius:999px;border:1px solid var(--line);color:var(--mut);margin-bottom:.6em}
+  .rotulo.ok{color:var(--amb);border-color:var(--amb)}
+  details{border-bottom:1px solid var(--line);padding:14px 0}
+  details summary{cursor:pointer;font-family:Sora;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  details summary::after{content:"+";color:var(--amb);font-weight:800}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--mut);margin:.7em 0 0}
+  .step img{border-radius:12px;border:1px solid var(--line);display:block;width:100%;max-width:640px;height:auto;margin:.4em 0 .8em}
+  body.light .btn,body.light .step .b,body.light .legenda li::before,body.light .dl .ordem:not(.cinza),body.light .monta figure::before{background:#FACC15;color:#1a1206}
+  body.light .numeros b,body.light .checks .card b.v{color:#854d0e}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js" type="module"></script></head>
+<body>
+<svg aria-hidden="true" style="display:none">
+<symbol fill="none" id="i-alerta" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></symbol>
+<symbol fill="none" id="i-cubo" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"></path><path d="M3.3 7 12 12l8.7-5M12 22V12"></path></symbol>
+<symbol fill="none" id="i-tela" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="16" rx="2.5" width="16" x="4" y="3"></rect><rect height="9" rx="1" width="9" x="7.5" y="6.5"></rect><path d="M10 22h4"></path></symbol>
+<symbol fill="none" id="i-parafuso" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M8 3h8v4H8z"></path><path d="M10 7v13l2 2 2-2V7"></path><path d="M10 11l4-1M10 14l4-1M10 17l4-1"></path></symbol>
+<symbol fill="none" id="i-porca" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M7 3.5h10l5 8.5-5 8.5H7L2 12z"></path><circle cx="12" cy="12" r="3.5"></circle></symbol>
+<symbol fill="none" id="i-bobina" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 3v6M21 12h-6"></path></symbol>
+<symbol fill="none" id="i-regua" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M3 17 17 3l4 4L7 21z"></path><path d="M7 13l2 2M10 10l2 2M13 7l2 2"></path></symbol>
+<symbol fill="none" id="i-chave" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 6.3-6.3"></path><path d="M3 21l6-6"></path></symbol>
+<symbol fill="none" id="i-baixar" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"></path><path d="M4 21h16"></path></symbol>
+</svg>
+<nav><div class="wrap"><a class="brand" href="#top">🤖 Conversational Robot</a><span class="sep">|</span><span class="clubpro"><a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a><span class="sep">-</span><a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a></span><div class="links"><a class="sec" href="#como">How it talks</a><a class="sec" href="#modelo3d">3D model</a><a class="sec" href="#medidas">Measurements</a><a class="sec" href="#tecnico">Kit (technical)</a><span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span><button aria-label="Toggle theme" class="tgl" id="themeToggle">☀️</button><a href="https://github.com/inematds/robo-conversa">GitHub</a></div></div></nav>
+<header class="hero" id="top"><div class="glow"></div><div class="wrap"><div><span class="chip">Open project · 3D printing · Raspberry Pi 3</span><h1>A robot on your desk that <span class="amb">listens and responds.</span></h1><p class="lead">Talk to your Jarvis without opening your phone or computer: imagine touching the screen, asking anything out loud, and watching the robot’s face think, speak, and smile with a response from your own Jarvis. That’s what this project puts together: a Raspberry Pi 3 behind a 7-inch screen, in a nice 3D-printed stand that attaches to your desk. The stand works with the Pi in a case or without one. The parts and software are here; the assembly has been checked on a computer and has not yet been printed or assembled.</p><div class="cta"><a class="btn" href="#como">See how it talks</a><a class="btn ghost" href="#downloads">Download the parts</a></div></div><figure><img alt="Robô conversa banner: the tabletop robot with a 7-inch screen showing two yellow eyes, beside the title A robot that talks on your desk" src="../assets/banner-en.jpg"/><figcaption style="padding:8px 12px;font-size:.8rem;color:var(--mut);background:var(--card)">Image generated from the actual 3D model (Blender). The robot has not been printed yet.</figcaption></figure></div></header>
+<div aria-label="The project in numbers" class="numeros">
+<div><b>5–6</b><span>printed parts (6 if your Pi doesn’t have a case)</span></div>
+<div><b>7"</b><span>touchscreen, 800 × 480</span></div>
+<div><b>2</b><span>ways to use the Pi: with and without an enclosure</span></div>
+<div><b>210 × 140</b><span>mm base, with 4 screws on the table</span></div>
+<div><b>211</b><span>mm in total height</span></div>
+<div><b>0</b><span>motors and solder joints</span></div>
+</div>
+<section class="resumo" id="resumo"><div class="wrap"><h2>In short</h2><p>Robô conversa is a 3D-printed desktop stand for the Raspberry Pi 3 with the official 7-inch screen. An animated face (eyes and mouth in INEMA yellow) runs on the stand. You touch the screen and speak, and the Pi sends your voice to your Jarvis server, which responds; the robot plays the response and moves its mouth in sync. You need a desktop 3D printer large enough (the 256 mm Bambu Lab A1 works), a Raspberry Pi 3, the screen, a USB microphone, and a small speaker. The design and software were checked on a computer, with automated tests and a mock Jarvis server; nothing has been printed or connected to a real screen yet. Jarvis needs a route <code>/conversa</code> (the contract is further down).</p><figure class="foto fotobig"><img alt="Grid banner: the tabletop robot shown at an angle, with eyes on the screen" loading="lazy" src="../assets/banner-grade-en.jpg"/></figure></div></section>
+<!-- VIDEO: projeto PT -->
+<section id="como"><div class="wrap"><span class="chip">How it talks</span><h2>Tap, speak, listen</h2><p class="sub">The Pi is lightweight: it only records, sends the audio, and plays the response. Your Jarvis server understands the speech and thinks. The face changes state at each step.</p>
+<div class="grid g4">
+<div class="card"><b class="q">1</b><h3>Listening</h3><p>You tap the screen. The frame turns blue and the eyes grow. The Pi records through the USB microphone.</p></div>
+<div class="card"><b class="q">2</b><h3>Thinking</h3><p>You tap again (or 12 s pass). The audio goes to Jarvis, and the eyes look up with three dots.</p></div>
+<div class="card"><b class="q">3</b><h3>Speaking</h3><p>The reply plays through the speaker. The mouth opens according to the volume <em>of the response</em>; the microphone never moves it.</p></div>
+<div class="card"><b class="q">4</b><h3>Happy</h3><p>Done: smiles for one second, then returns to idle, blinking and looking around.</p></div>
+</div>
+<figure class="foto fotobig"><img alt="The face’s six states: idle, listening with a blue frame, thinking with three dots, speaking with an open mouth, happy with a smile, and sleeping" loading="lazy" src="../assets/rosto-estados.jpg"/><figcaption>Live preview of the face (software/rosto/index.html) in all six states. The last one, sleeping, appears for 2 seconds when the server doesn’t respond.</figcaption></figure>
+<p class="mut" style="font-size:.9rem">If the server goes down, the robot doesn’t freeze: it shows its sleeping face for 2 seconds, then returns to idle, ready to try again (this has an automated test).</p></div></section>
+<section id="projeto"><div class="wrap"><span class="chip">The project</span><h2>Large screen, sturdy stand, screwed to the desk</h2><p class="sub">The screen tilts back 12°, sits 211 mm above the floor, and has a 210 × 140 mm base that you screw to the desk through four countersunk holes. The neck is hollow: the cables run down inside it and come out the back.</p>
+<figure class="foto fotobig"><img alt="Render of the actual model: graphite frame with INEMA in relief, display with yellow eyes, yellow neck and base" loading="lazy" src="../assets/r-conjunto.jpg"/><figcaption>Render of the actual CAD file. The display is shown with the software’s face.</figcaption></figure>
+<div class="grid g3">
+<figure class="foto"><img alt="Front view of the robot: frame with a 158-by-90-millimeter window and INEMA embossed on the chin" loading="lazy" src="../assets/r-frente.jpg"/><figcaption><b>Front view</b>The 6 mm frame covers the screen edge; INEMA is embossed on the chin and base.</figcaption></figure>
+<figure class="foto"><img alt="Side view showing the 12-degree tilt and the neck" loading="lazy" src="../assets/r-lado.jpg"/><figcaption><b>Side view</b>12° tilt, with the Pi pocket behind the screen, above the neck.</figcaption></figure>
+<figure class="foto"><img alt="Rear view, with the ventilation cover closing the Pi pocket and the cable outlet in the neck" loading="lazy" src="../assets/r-costas-caixa.jpg"/><figcaption><b>From behind, with case</b>Your Pi’s case slides into the pocket; the cables run down through the neck.</figcaption></figure>
+</div></div></section>
+<section id="duas"><div class="wrap"><span class="chip">Pi with or without a case</span><h2>One stand, two ways to mount the Pi</h2><p class="sub">The pocket behind the screen measures 100 × 72 mm and is 44 mm deep. If your Pi already comes in its own case (the plastic one supplied with the Pi), it fits entirely inside the printed pocket. If it doesn’t have a case, the adapter screws the board onto four M2.5 posts, leaving it exposed and protected by the cover. Either way, the printed pocket is part of the project.</p>
+<div class="grid g2">
+<figure class="foto"><img alt="Printed pocket open at the back, with a white Raspberry Pi case inside" loading="lazy" src="../assets/r-costas-caixa.jpg"/><figcaption><b>With case</b>Fits a Pi case up to 98 × 68 × 30.5 mm. Measure yours before printing. It rests on four supports in the pocket’s corners.</figcaption></figure>
+<figure class="foto"><img alt="Printed pocket open at the back, with the green Raspberry Pi board screwed onto the adapter" loading="lazy" src="../assets/r-costas-pi-nu.jpg"/><figcaption><b>No enclosure</b>The adapter holds the board with the USB/Ethernet port on the right, where the pocket wall is open.</figcaption></figure>
+</div>
+<figure class="foto fotobig"><img alt="Exploded view: frame, back plate, Pi pocket with adapter and Pi, and the cover set aside above the base" loading="lazy" src="../assets/r-explodida.jpg"/><figcaption>Exploded view of the actual model (the screen is omitted). Order, front to back: frame, screen, back plate, Pi pocket, cover.</figcaption></figure></div></section>
+<section id="compacta"><div class="wrap"><span class="chip">Compact version</span><h2>Small head: Pi 3 + 2.4″ screen</h2><p class="sub">The 2.4″ screen is a board that plugs directly into the Pi’s 40-pin connector (like a HAT), so the Pi sits right behind it and the head measures 112.2 × 63.7 × 30.1 mm (the depth adds the 27.1 mm front and the cover). The speaker is built into the screen board, and the microphone is a USB mic that plugs into the side. The face is drawn directly on the screen, without a browser.</p>
+<figure class="foto fotobig"><img alt="The six face states on the small 320 by 240 screen: idle, listening, thinking, speaking, happy, and sleeping" loading="lazy" src="../assets/rosto-compacta-estados.jpg"/><figcaption>The compact version’s face (preview generated by the program itself, 320 × 240). Same states as the large version.</figcaption></figure>
+<div class="grid g3">
+<div class="card"><h3>Three parts</h3><p>Head front (112.2 × 63.7 × 27.1 mm), lid (112.2 × 63.7 × 9.5 mm), and post with base (130 × 105 × 69 mm). The lid has four M2,5 posts that hold the Pi; the power cable runs down through the hollow post.</p></div>
+<div class="card"><h3>What you get</h3><p>Raspberry Pi 3, 2.4″ screen for Pi with built-in speaker, mini USB microphone, and a 5 V / 2.5 A power supply. No HDMI and no Pi case.</p></div>
+<div class="card"><h3>Checked on the computer</h3><p>No collisions between the parts, Pi, and screen; a USB plug fits in from the side; the cable reaches the post. Two negative tests show that a thicker Pi or a screen that is 6 mm larger will collide. Estimated mass: 184 g.</p></div>
+</div>
+<div class="step"><div class="b">1</div><div><h3>Set up the Pi and screen</h3><p>Install the system, plug the screen into the 40-pin connector, and install the driver recommended by the screen’s seller. Then check whether the screen’s framebuffer exists (usually <code>/dev/fb1</code>) and the touch device:</p><pre>sudo apt install python3-pil python3-numpy
+ls /dev/fb*
+ls /dev/input/by-path</pre></div></div>
+<div class="step"><div class="b">2</div><div><h3>Run the bridge and face</h3><p>Download and extract the <code>robo-conversa-software.zip</code> (in the downloads), go into the extracted folder and install these too <code>sudo apt install alsa-utils espeak-ng</code> (recording and backup voice). The bridge is the same as in the larger version. The small face draws to the framebuffer and communicates with the bridge. The numbers <code>/dev/fb1</code> e <code>event0</code> are examples: use the ones that appear on your Pi. Without the screen driver and these adjustments, this version probably won’t work right away.</p><pre>JARVIS_URL=http://SEU-JARVIS:8787 python3 ponte/robo.py &amp;
+ROSTO_FB=/dev/fb1 ROSTO_TOQUE=/dev/input/event0 python3 rosto/rosto_fb.py</pre><p>To see the face without a screen: <code>python3 rosto/rosto_fb.py --png falando rosto.png</code>. 3.5″ screen (480 × 320): <code>ROSTO_LARG=480 ROSTO_ALT=320</code>. Screen mounted sideways: <code>ROSTO_GIRO=90</code>.</p></div></div>
+<div class="aviso"><svg><use href="#i-alerta"></use></svg><p><strong>What has NOT been verified in the compact version:</strong> the 2.4″ screen dimensions are typical of a Pi Zero format board (65 × 56.5 mm), and the listing doesn’t show its outline, so measure yours with calipers and change only the numbers at the top of <code>cad/gerar_compacta.py</code> (the tests show whether it still fits). Also not tested: the screen driver, touch input, the board’s sound (PWM audio, basic quality), the Pi’s temperature inside the closed case, or any printing.</p></div>
+<details><summary>And the large version, with a 7″ screen: does it have a microphone and speaker?</summary><p>The design has room for both, but they haven’t been tested with real audio yet. The microphone (a small 14 × 14 mm board, such as the INMP441) sits in a pocket at the top of the frame, with a sound hole facing up and a channel for the wire. The round 40 mm speaker sits in an enclosure beside the neck, facing up, attached to the base with two M3 screws underneath (part <em>Speaker enclosure</em>, in the downloads). If you prefer, the USB microphone and small speaker are still options.</p></details></div></section>
+<section id="modelo3d"><div class="wrap"><span class="chip">3D model</span><h2>Turn the robot in your hand</h2><p class="sub">This is the project’s assembly file (the same GLB as the download). Drag to rotate, and use two fingers or the mouse wheel to zoom in. The white box shows the maximum space for the Pi case.</p>
+<div class="viewer"><model-viewer alt="Interactive 3D assembly of Robô conversa" auto-rotate="" auto-rotate-delay="1500" camera-controls="" camera-orbit="150deg 72deg auto" exposure="1.05" interaction-prompt="none" orientation="0deg -90deg 0deg" poster="../assets/r-conjunto.jpg" rotation-per-second="18deg" shadow-intensity="1" src="../downloads/montagem-ESTUDO.glb" touch-action="pan-y"></model-viewer><span class="dica">Drag to rotate</span></div>
+<p class="mut" style="font-size:.88rem">If the model doesn’t appear, <a download="" href="../downloads/montagem-ESTUDO.glb">download the GLB</a> and open it in any 3D viewer.</p></div></section>
+<section id="medidas"><div class="wrap"><span class="chip">Measurements</span><h2>How much desk space it takes</h2>
+<div class="tabela" style="margin-top:18px"><table><thead><tr><th>Measurement</th><th>Value</th><th>Where it comes from</th></tr></thead><tbody>
+<tr><td>Base</td><td>210 × 140 mm</td><td>CAD model (4 holes for table screws)</td></tr>
+<tr><td>Total height</td><td>211 mm</td><td>CAD model, with the screen tilted 12°</td></tr>
+<tr><td>Frame and backplate</td><td>214 × 151 mm</td><td>CAD model</td></tr>
+<tr><td>Screen (outline)</td><td>192.96 × 110.76 mm; visible area 155 × 86 mm</td><td><a href="https://www.raspberrypi.com/documentation/accessories/display.html" rel="noopener" target="_blank">Official documentation for the 7" screen</a></td></tr>
+<tr><td>Raspberry Pi 3 B</td><td>85 × 56 mm; M2.5 holes on 58 × 49 mm spacing</td><td>Pi 3 mechanical drawing</td></tr>
+<tr><td>Pi pocket (printed)</td><td>100 × 72 × 44 mm (case up to 98 × 68 × 30.5 mm)</td><td>CAD model</td></tr>
+<tr><td>Estimated weight</td><td>≈ 724 g</td><td>Estimate (PLA at ~35%, 300 g screen, 80 g Pi); weigh it after assembly</td></tr>
+</tbody></table></div>
+<div class="aviso"><svg><use href="#i-alerta"></use></svg><p><strong>Screw the base to the desk.</strong> According to the model calculations, without the screws, a force of about 2.2 N at the top of the screen is enough to tip the robot backward, and touching the screen means pushing it. With four 4 mm wood screws, it stays in place.</p></div></div></section>
+<div class="techhead" id="tecnico"><div class="wrap"><span class="chip">Technical details</span><h2>The kit: for printing and assembly</h2><p>You don’t need this part to understand the project. To assemble it, follow this order: materials, printing, physical assembly, software, and testing.</p></div></div><div class="techzone">
+<section id="material"><div class="wrap"><h2>What you need</h2><p class="sub">Common electronics and hardware parts. Prices vary; check before buying.</p>
+<div class="grid g4 bom">
+<div class="card"><svg class="ico"><use href="#i-cubo"></use></svg><b class="q">1×</b><h3>Raspberry Pi 3 (B or B+)</h3><p>With a 5 V / 2.5 A power supply and a 16 GB or larger microSD card. With or without a case.</p></div>
+<div class="card"><svg class="ico"><use href="#i-tela"></use></svg><b class="q">1×</b><h3>7" Raspberry Pi touch screen</h3><p>Original (800 × 480). The Touch Display 2 has a different outline: see the parameters in the <code>cad/gerar.py</code>.</p></div>
+<div class="card"><svg class="ico"><use href="#i-cubo"></use></svg><b class="q">1×</b><h3>USB microphone</h3><p>The Pi 3 has no microphone input. Any small USB microphone will work.</p></div>
+<div class="card"><svg class="ico"><use href="#i-cubo"></use></svg><b class="q">1×</b><h3>Speaker</h3><p>With a 3.5 mm P2 plug (the Pi 3 has an output) or USB.</p></div>
+<div class="card"><svg class="ico"><use href="#i-cubo"></use></svg><b class="q">optional.</b><h3>Built-in microphone and speaker</h3><p>Large version: 14 × 14 mm microphone board and 40 mm, 3 W speaker, with a printed enclosure. Compact version: 2.4″ screen with speaker and a mini USB microphone.</p></div>
+<div class="card"><svg class="ico"><use href="#i-parafuso"></use></svg><b class="q">6×</b><h3>M3 × 16 screw</h3><p>Fasten the frame (4 on the sides, 2 at the chin).</p></div>
+<div class="card"><svg class="ico"><use href="#i-parafuso"></use></svg><b class="q">4×</b><h3>M3 × 12 screw</h3><p>Fasten the neck to the board’s chin.</p></div>
+<div class="card"><svg class="ico"><use href="#i-parafuso"></use></svg><b class="q">4×</b><h3>M3 × 8 screw</h3><p>Fasten the Pi pocket to the back plate. <strong>Only if the Pi doesn’t have a case:</strong> plus 4 for the adapter.</p></div>
+<div class="card"><svg class="ico"><use href="#i-parafuso"></use></svg><b class="q">4×</b><h3>M3 × 10 screw</h3><p>Close the cover. <strong>Only without a case:</strong> 4 M2.5 × 6 screws fasten the board to the adapter posts.</p></div>
+<div class="card"><svg class="ico"><use href="#i-parafuso"></use></svg><b class="q">4×</b><h3>4 × 25 wood screw</h3><p>Secure the base to the desk (countersunk head).</p></div>
+<div class="card"><svg class="ico"><use href="#i-bobina"></use></svg><b class="q">up to 0.9 kg</b><h3>Filament</h3><p>0.9 kg if the parts were solid; about half that with 15–25% infill. PLA or PETG, not yet tested. Three nice colors: graphite, black, and yellow.</p></div>
+<div class="card"><svg class="ico"><use href="#i-cubo"></use></svg><b class="q">A1</b><h3>3D printer</h3><p>A 256 mm bed (Bambu Lab A1) fits all the parts.</p></div>
+<div class="card"><svg class="ico"><use href="#i-regua"></use></svg><b class="q">ideal</b><h3>Caliper</h3><p>To measure the display, Pi, and its case before printing.</p></div>
+</div>
+<p class="mut" style="font-size:.9rem;margin-top:14px">To connect the display to the Pi, use the DSI ribbon cable and the two power wires that come with the display. The mount has no built-in power supply.</p></div></section>
+<section id="downloads"><div class="wrap"><h2>Download and start with the smallest</h2><p>An STL file is the 3D model. It still needs to be sliced for your printer; it isn’t the ready-to-use print instructions. All STL files are already oriented for printing.</p>
+<div class="dl">
+<a class="card" download="" href="../downloads/tampa-ESTUDO.stl"><span class="ordem">1</span><span><b>Lid · STL</b><small>122 × 94 × 3 mm · 26.9 cm³ · test part, prints quickly</small></span></a>
+<a class="card" download="" href="../downloads/bolso-do-pi-ESTUDO.stl"><span class="ordem">2</span><span><b>Pi pocket · STL</b><small>122 × 94 × 44 mm · 50.1 cm³ · the space where your Pi (with or without a case) fits</small></span></a>
+<a class="card" download="" href="../downloads/adaptador-pi-sem-caixa-ESTUDO.stl"><span class="ordem">3</span><span><b>Adapter (Pi without case) · STL</b><small>98.8 × 70.8 × 8 mm · 12.8 cm³ · only if you’re not using a case</small></span></a>
+<a class="card" download="" href="../downloads/placa-traseira-ESTUDO.stl"><span class="ordem">4</span><span><b>Back plate · STL</b><small>214 × 151 × 12.4 mm · 199.2 cm³</small></span></a>
+<a class="card" download="" href="../downloads/moldura-ESTUDO.stl"><span class="ordem">5</span><span><b>Frame · STL</b><small>214 × 151 × 7.2 mm · 108.3 cm³ · raised INEMA lettering (face up)</small></span></a>
+<a class="card" download="" href="../downloads/base-e-pescoco-ESTUDO.stl"><span class="ordem">6</span><span><b>Base and neck · STL</b><small>210 × 140 × 86.8 mm · 288.7 cm³ · the largest part</small></span></a>
+<a class="card" download="" href="../downloads/caixa-do-alto-falante-ESTUDO.stl"><span class="ordem">7</span><span><b>Speaker enclosure · STL</b><small>52 × 50 × 31 mm · 27.4 cm³ · optional, large version (40 mm speaker)</small></span></a>
+<a class="card" download="" href="../downloads/cabeca-tampa-ESTUDO.stl"><span class="ordem">C1</span><span><b>Head cover · STL</b><small>112.2 × 63.7 × 9.5 mm · compact version (2.4″ screen)</small></span></a>
+<a class="card" download="" href="../downloads/cabeca-frente-ESTUDO.stl"><span class="ordem">C2</span><span><b>Head front · STL</b><small>112.2 × 63.7 × 27.1 mm · compact version (2.4″ screen)</small></span></a>
+<a class="card" download="" href="../downloads/poste-e-base-ESTUDO.stl"><span class="ordem">C3</span><span><b>Post and base · STL</b><small>130 × 105 × 69 mm · compact version (2.4″ screen)</small></span></a>
+<a class="card" download="" href="../downloads/robo-conversa-compacta-pecas.zip"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-baixar"></use></svg></span><span><b>Compact version (ZIP)</b><small>The three STL files for the small head for the 2.4″ screen, the 3D assembly, and verification</small></span></a>
+<a class="card" download="" href="../downloads/robo-conversa-pecas.zip"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-baixar"></use></svg></span><span><b>Parts package (ZIP)</b><small>The seven STL files for the large version, the 3D assembly, verification, and instructions</small></span></a>
+<a class="card" download="" href="../downloads/robo-conversa-software.zip"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-baixar"></use></svg></span><span><b>Robot software (ZIP)</b><small>Face (browser and small screen), bridge to Jarvis, mock Jarvis, and tests</small></span></a>
+<a class="card" download="" href="../downloads/montagem-ESTUDO.glb"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-cubo"></use></svg></span><span><b>3D assembly · GLB</b><small>For viewing only; not a print file</small></span></a>
+</div>
+<p class="mut" style="font-size:.9rem">These volumes are for solid parts; with 15–25% infill, material use is much lower, and Bambu Studio shows the actual amount when slicing. The ZIP files don’t include G-code or a validated 3MF profile. <a href="../downloads/verificacao.json">View the verification report (JSON)</a>.</p></div></section>
+<section id="guia"><div class="wrap"><h2>Print in this order</h2><p class="sub">Print the small parts first to test anything that depends on your measurements, and print the base last. Reminder: these are study parts, and none have been test-printed yet; use little filament until the first fit check.</p>
+<div class="step"><div class="b">1</div><div><h3>Measure before printing</h3><p>Use calipers to measure your Pi case (or bare board) and the screen. The case fits if it’s up to 98 × 68 mm across the front and 30.5 mm deep. If it’s larger, change <code>BOLSO_W/H/D</code> no <code>cad/gerar.py</code> and generate it again (the script warns you if anything collides).</p></div></div>
+<div class="step"><div class="b">2</div><div><h3>Choose your printer</h3><p>In Bambu Studio, select the Bambu Lab A1, a 0.4 mm nozzle, and the actual filament. A 0.2 mm layer height, 3 walls, and 15–25% infill are an untested starting point.</p></div></div>
+<div class="step"><div class="b">3</div><div><h3>Open one part at a time, without rotating it</h3><p>Keep it at 100%. Each STL is already in its print orientation (frame with INEMA facing up, backplate on its back, case and lid with the flange on the bed). Check the expected size in the downloads table; a very different measurement means the scale or orientation is wrong.</p></div></div>
+<div class="step"><div class="b">4</div><div><h3>Fit test</h3><p>Print the cover and Pi pocket, and check that your Pi case (or the Pi on the adapter) fits in the pocket. Then print the frame over the back plate with the actual screen inside: the screen should sit in place without forcing it. Only then print the base and neck.</p></div></div>
+<div class="step"><div class="b">5</div><div><h3>No stand, limited support</h3><p>The parts are designed to print without supports: the angled neck tilts only 12°, and the cable outlet is a short arch. If your slicer asks for supports anywhere, let us know in the project form.</p></div></div></div></section>
+<section id="montagem"><div class="wrap"><h2>Assemble in six steps</h2><p class="sub">Assemble the structure with the screen before powering on the Pi. All screws are M3 socket-head screws.</p>
+<div class="step"><div class="b">1</div><div><h3>Screen on the rear plate</h3><p>Fit the screen into the recess in the back plate, with the glass facing forward. The screen driver board fits through the 104 × 72 mm window; make sure nothing scrapes.</p></div></div>
+<div class="step"><div class="b">2</div><div><h3>Frame from above</h3><p>Place the frame at the front and fasten it with the 6 M3 × 16 screws inserted from behind the plate (4 on the sides, 2 at the chin). Don’t overtighten: the threads are made directly in the part.</p></div></div>
+<div class="step"><div class="b">3</div><div><h3>Neck to chin</h3><p>From the top of the neck (which is hollow), pass the 4 M3 × 12 screws through the holes in the front wall and screw them into the plate’s chin, using a long screwdriver. The stand is already tilted 12°.</p></div></div>
+<div class="step"><div class="b">4</div><div><h3>Pi pocket on the plate</h3><p>Fasten the printed pocket with 4 M3 × 8 screws through the flange. Connect the screen’s DSI cable to the Pi and the two power wires to the Pi (or power the screen with another cable, as its documentation describes).</p></div></div>
+<div class="step"><div class="b">5</div><div><h3>Pi inside, cables facing down</h3><p>With a case: slide the Pi case into the pocket until it rests on the supports. Without a case: screw the adapter onto the supports (4 × M3 × 8), then screw the board onto the posts (4 × M2.5) with the USB/Ethernet port on the right. The microphone, speaker, and power supply cables run down through the bottom opening, through the neck, and out the opening in the back wall.</p></div></div>
+<div class="step"><div class="b">6</div><div><h3>Lid and stand</h3><p>Close it with the lid (4 × M3 × 10). Mark the four base holes on the desk, drill 2.5 mm pilot holes, and secure with wood screws.</p></div></div>
+<div class="aviso"><svg><use href="#i-alerta"></use></svg><p><strong>Heat and cables.</strong> The Pi 3 gets hot, and the pocket is closed by a lid with 11 openings. We haven't measured the temperature inside it yet: after assembly, run the robot for 30 minutes and touch the lid. If it's too hot, remove the lid or enlarge the openings.</p></div></div></section>
+<section id="software"><div class="wrap"><h2>Get the software running</h2><p class="sub">All in pure Python (standard library only), with no packages to install. Running the bridge and face doesn’t use any third-party APIs: the only network call is to <em>your</em> Jarvis.</p>
+<div class="step"><div class="b">1</div><div><h3>Set up the Pi</h3><p>Install Raspberry Pi OS (with desktop) and connect it to the network. In the Pi terminal:</p><pre>sudo apt update
+sudo apt install -y chromium alsa-utils espeak-ng   # em versões antigas do Raspberry Pi OS o pacote se chama chromium-browser
+arecord -l     # confira que o microfone USB aparece
+aplay -l       # e a caixinha de som</pre></div></div>
+<div class="step"><div class="b">2</div><div><h3>Copy the software</h3><p>Download the software ZIP above, copy it to the Pi, and extract it. Go into the extracted folder:</p><pre>unzip robo-conversa-software.zip
+cd robo-conversa-software</pre></div></div>
+<div class="step"><div class="b">3</div><div><h3>Test without Jarvis or a microphone</h3><p>The tests start a fake Jarvis and check the entire conversation (face states, token, mouth synced to the reply audio, and server failure):</p><pre>python3 testes/test_ponte.py</pre><p>Must end with <code>OK</code> (4 tests).</p></div></div>
+<div class="step"><div class="b">4</div><div><h3>Point to your Jarvis</h3><p>Set your server address and, if you have one, the token. The robot talks to <code>POST &lt;JARVIS_URL&gt;/conversa</code>:</p><pre>export JARVIS_URL=http://ENDERECO-DO-SEU-SERVIDOR:PORTA
+export JARVIS_TOKEN=seu-token        # opcional
+export ROBO_VOZ=pt-br                 # voz de reserva do espeak-ng (en-us, es...)
+python3 ponte/robo.py</pre></div></div>
+<div class="step"><div class="b">5</div><div><h3>Open the face in full screen</h3><p>In another terminal on the Pi, with the 7" screen connected:</p><pre>chromium --kiosk --noerrdialogs http://127.0.0.1:8765/   # ou chromium-browser</pre><p>Touch the screen to speak, then touch it again to send (the Space key does the same). The Pi 3 is modest: the first time Chromium opens may take a while.</p></div></div>
+<h3 style="margin-top:28px">What your Jarvis needs to return</h3>
+<p>The contract is small and is the part you adapt to your server:</p>
+<pre>POST /conversa    {"audio_wav_b64": "...", "texto": "...", "sessao": "robo-mesa"}
+→  {"ouvido": "o que entendeu", "resposta": "texto",
+     "audio_wav_b64": "opcional (WAV 16 bits)"}</pre>
+<p>The robot sends the recorded audio (WAV 16 kHz, mono). Your server transcribes it, thinks, and returns the response text. If it also returns audio, the robot plays it; otherwise, it speaks the text with the <code>espeak-ng</code> from the Pi itself (basic voice). Your server chooses the voice and AI services, using your rules and credentials; the robot doesn’t store any keys.</p><p><strong>Safety:</strong> the token and your voice travel to Jarvis over the network. Use a private network, VPN, or HTTPS, not open HTTP on the internet. The robot bridge only listens on <code>127.0.0.1</code> (the routes <code>/ouvir</code>, <code>/parar</code> e <code>/texto</code> don’t have passwords because they only accept local access on the Pi itself).</p>
+<div class="aviso"><svg><use href="#i-alerta"></use></svg><p><strong>The route <code>/conversa</code> doesn't exist in anyone's Jarvis yet.</strong> You (or your coding agent) need to expose this route on the server. In the tests, it is simulated by <code>ponte/jarvis_falso.py</code>. A real conversation with your Jarvis, the microphone, and the speaker have not been tested on hardware yet.</p></div>
+<h3 style="margin-top:28px">Open automatically when the Pi starts</h3>
+<p>When everything works, create two services (one for <code>ponte/robo.py</code>, another for Chromium in full screen) or put both commands in <code>~/.config/autostart</code>. If the conversation over the Pi 3’s Wi-Fi is slow, use a network cable.</p></div></section>
+<section id="verificacao"><div class="wrap"><h2>What was checked on the computer</h2><p class="sub">The CAD generator (<code>cad/gerar.py</code>) assembles the parts in code and runs these checks every time. They apply only to the model; nothing has been tested on the bench.</p>
+<div class="grid g3">
+<div class="card"><h3>Parts</h3><p>Closed meshes, positive volume, one body per STL, all under 256 mm and resting on the bed on the correct face (contact area measured).</p></div>
+<div class="card"><h3>Fittings</h3><p>No intersections between assembly parts; the screen, driver board, 98 × 68 × 30.5 mm Pi case, and Pi without a case with adapter all fit without collisions. A negative test confirms that a larger case collides.</p></div>
+<div class="card"><h3>Cables and stability</h3><p>A 12 mm cable channel runs from the enclosure to the neck opening without touching anything. Center of mass is 73.2 mm from the front and 66.8 mm from the back of the base.</p></div>
+</div>
+<div class="aviso"><svg><use href="#i-alerta"></use></svg><p><strong>What has NOT been verified:</strong> slicing and printing; the screen’s and Pi’s actual holes and connectors (from the data sheet); the exact position of the visible area; heat from the Pi in its pocket; the strength of the screw bosses; the actual microphone, speaker, and Jarvis. Measure everything with calipers before printing.</p></div></div></section>
+<section id="roteiro"><div class="wrap"><h2>Where the project lives</h2>
+<div class="phase"><div class="tag">Done</div><div class="d"><strong>Mechanical study and software on the computer</strong><span>Six parts designed from the official measurements, with the checks above; animated face and bridge to Jarvis with 4 automated tests.</span></div></div>
+<div class="phase"><div class="tag">Now</div><div class="d"><strong>Bench test</strong><span>Print the cover and pocket, measure your Pi case, assemble it with the actual screen, and run the robot with a microphone and speaker.</span></div></div>
+<div class="phase"><div class="tag">Then</div><div class="d"><strong>The /conversa route on your Jarvis</strong><span>Expose the route on the server, choose the voice and transcription on its end, and test the conversation from end to end.</span></div></div>
+<div class="phase"><div class="tag">Future</div><div class="d"><strong>Wake word and movement</strong><span>Wake the robot by voice (without touching it) and, perhaps, a rotating base. None of this has been decided.</span></div></div>
+</div></section>
+<section id="perguntas"><div class="wrap"><h2>Frequently asked questions</h2>
+<details><summary>Do I need the Arduino?</summary><p>No. The initial idea used an Arduino Uno just to draw the eyes, but with the Raspberry Pi, the Pi itself draws the face and talks to the server. One fewer part, no firmware, and no serial cable.</p></details>
+<details><summary>Does it work with the Raspberry Pi 4 or 5?</summary><p>The pocket fits the board and the hole pattern is the same, but the ports are in different places (and the Pi 5 gets hotter). Test with the adapter before printing everything, and check the connectors.</p></details>
+<details><summary>Does it work with another 7" screen?</summary><p>Only if the outline is similar. The Touch Display 2 (189.5 × 120 mm) and generic HDMI screens have different dimensions: change the parameters at the beginning of the <code>cad/gerar.py</code> and generate it again.</p></details>
+<details><summary>Can the robot already talk?</summary><p>Not really yet. The face, recording, and bridge are ready and tested with a mock server. The route is still missing <code>/conversa</code> in your Jarvis and the test with a microphone and speaker.</p></details>
+<details><summary>Does the conversation use a paid API?</summary><p>The robot only calls the server you specify in <code>JARVIS_URL</code>. What this server uses to understand your voice and respond is your choice, with your own costs and permissions.</p></details>
+<details><summary>Can I use it without a touch screen?</summary><p>Yes: the Space key does the same thing as a tap. On a USB keyboard, or use <code>curl -X POST http://127.0.0.1:8765/ouvir</code> e <code>/parar</code>.</p></details>
+</div></section>
+</div>
+<footer><div class="wrap"><p><span class="pill">Blender</span><span class="pill">manifold3d</span><span class="pill">trimesh</span><span class="pill">Python</span><span class="pill">Bambu Studio</span></p><p>Robô conversa · open research and education project</p><p><a href="https://github.com/inematds/robo-conversa">Code and files</a> · <a href="https://inema.club">INEMA.CLUB</a> · <a href="https://inema.pro">PRO</a></p></div></footer>
+<script>(function(){const b=document.body,t=document.getElementById('themeToggle'),k='robo-conversa-theme';try{if(localStorage.getItem(k)==='light'){b.classList.add('light');t.textContent='🌙'}}catch(e){}t.addEventListener('click',function(){const light=b.classList.toggle('light');t.textContent=light?'🌙':'☀️';try{localStorage.setItem(k,light?'light':'dark')}catch(e){}})})();</script>
+</body></html>

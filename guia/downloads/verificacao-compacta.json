@@ -1,0 +1,103 @@
+{
+  "status": "estudo 02 (compacto); medidas da tela são típicas e NÃO confirmadas",
+  "pecas": {
+    "cabeca-frente": {
+      "malha_fechada": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        112.2,
+        63.7,
+        27.1
+      ],
+      "volume_cm3": 35.0,
+      "area_apoio_mesa_mm2": 5067,
+      "geometria_basica_ok": true
+    },
+    "cabeca-tampa": {
+      "malha_fechada": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        112.2,
+        63.7,
+        9.5
+      ],
+      "volume_cm3": 17.4,
+      "area_apoio_mesa_mm2": 5671,
+      "geometria_basica_ok": true
+    },
+    "poste-e-base": {
+      "malha_fechada": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        130.0,
+        105.0,
+        69.0
+      ],
+      "volume_cm3": 153.1,
+      "area_apoio_mesa_mm2": 13614,
+      "geometria_basica_ok": true
+    }
+  },
+  "checagens": {
+    "interferencia_tela_frente_mm3": 0.0,
+    "interferencia_tela_tampa_mm3": 0.0,
+    "interferencia_pi_placa_frente_mm3": 0.0,
+    "interferencia_pi_placa_tampa_mm3": 0.0,
+    "interferencia_pi_usb_ethernet_frente_mm3": 0.0,
+    "interferencia_pi_usb_ethernet_tampa_mm3": 0.0,
+    "interferencia_pi_cartao_sd_frente_mm3": 0.0,
+    "interferencia_pi_cartao_sd_tampa_mm3": 0.0,
+    "interferencia_pi_solda_frente_mm3": 0.0,
+    "interferencia_pi_solda_tampa_mm3": 0.0,
+    "janela_dentro_da_placa": "52.0 x 40.0 dentro de 65.0 x 56.5",
+    "plugue_usb_entra_pela_lateral": "livre (14 x 7 mm, 3 posições de porta cobertas pela janela)",
+    "cabo_de_forca_cabeca_poste": "livre (8 x 8 mm da cavidade até dentro do poste)",
+    "interferencia_frente_poste_mm3": -0.0,
+    "interferencia_tampa_poste_mm3": 0.0,
+    "cabeca_apoia_no_poste": "sim (contato por cima do poste)",
+    "parafusos_poste_cabeca_passam": "passou (2 posições)",
+    "negativos_mm3": {
+      "pi_mais_grosso_bate_na_tampa": 10829.6,
+      "tela_6mm_maior_bate_na_caixa": 2887.5
+    },
+    "estabilidade": {
+      "massa_estimada_g": 184,
+      "centro_de_massa_mm": [
+        3.6,
+        16.3,
+        71.1
+      ],
+      "margem_ate_a_borda_traseira_mm": 53.7,
+      "margem_ate_a_borda_dianteira_mm": 51.3
+    }
+  },
+  "parametros": {
+    "tela_placa_mm": [
+      65.0,
+      56.5,
+      7.0
+    ],
+    "janela_mm": [
+      52.0,
+      40.0
+    ],
+    "pi_mm": [
+      85.0,
+      56.0,
+      17.0
+    ],
+    "cabeca_externa_mm": [
+      112.2,
+      63.7,
+      30.1
+    ]
+  },
+  "limites": [
+    "Estudo: sem fatiamento nem teste físico. As medidas da tela 2,4\" são TÍPICAS (formato Pi Zero 65 x 56,5 mm); o anúncio não traz o contorno.",
+    "Se a placa da tela tiver o tamanho do Pi (85 x 56 mm) ou outro conector, mude HAT_W/HAT_H/HAT_DX/EMPILHA e rode de novo: os testes mostram se ainda cabe.",
+    "A janela está centrada na placa da tela; confira a posição real da área visível.",
+    "Os postes de M2,5 (58 x 49 mm) seguram o Pi pela tampa; a tela fica presa só pelo conector de 40 pinos (use espaçadores M2,5 se vier com furos).",
+    "O microfone USB sai pela lateral direita; o alto-falante é o da própria placa da tela (áudio por PWM, qualidade simples).",
+    "Cabeça reta, sem inclinação. Sem análise de aquecimento do Pi no interior fechado: a tampa tem fendas de ventilação."
+  ]
+}
