@@ -1,7 +1,7 @@
-ROBÔ CONVERSA — peças de ESTUDO (não liberadas como finais)
+ROBÔ CONVERSA — peças de ESTUDO (nêo liberadas como finais)
 
 Estes STL saíram do gerador cad/gerar.py e foram verificados SÓ no computador:
-malhas fechadas, sem colisão entre as peças, cabem na mesa de 256 mm.
+malhas fechadas, sem colisêo entre as peças, cabem na mesa de 256 mm.
 NADA foi fatiado, impresso nem montado.
 
 Antes de imprimir:
@@ -9,9 +9,9 @@ Antes de imprimir:
    A caixa cabe se tiver até 98 x 68 mm de frente e 30,5 mm de fundo.
 2. Imprima primeiro a tampa e o bolso do Pi (peças pequenas) e teste o encaixe.
 3. Imprima por último a base e o pescoço (210 x 140 mm).
-4. Cada STL já está na posição de impressão: não gire. Mantenha a escala em 100%.
+4. Cada STL já está na posiçêo de impressêo: nêo gire. Mantenha a escala em 100%.
 
-Versão grande com áudio (opcional): caixa-do-alto-falante-ESTUDO.stl (alto-falante de 40 mm, 2 x M3x10 por baixo da base)
+Versêo grande com áudio (opcional): caixa-do-alto-falante-ESTUDO.stl (alto-falante de 40 mm, 2 x M3x10 por baixo da base)
 e bolso do microfone no topo da moldura (placa de 14 x 14 mm). Meça as suas peças.
 
 Parafusos: 6 x M3x16 (moldura), 4 x M3x12 (pescoço), 4 x M3x8 (bolso na placa),
@@ -19,4 +19,4 @@ Parafusos: 6 x M3x16 (moldura), 4 x M3x12 (pescoço), 4 x M3x8 (bolso na placa),
 e 4 x M2,5x6 nos postes.
 
 Guia completo: https://inematds.github.io/robo-conversa/guia/
-Se algo não casar, abra uma ficha em https://github.com/inematds/robo-conversa/issues
+Se algo nêo casar, abra uma ficha em https://github.com/inematds/robo-conversa/issues

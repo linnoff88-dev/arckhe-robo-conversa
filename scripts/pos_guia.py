@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pós-tradução (idempotente): canonical por idioma, hreflang x-default, og:*, banners por idioma."""
+"""Pós-traduçêo (idempotente): canonical por idioma, hreflang x-default, og:*, banners por idioma."""
 import re
 from pathlib import Path
 R = Path(__file__).resolve().parents[1] / 'guia'

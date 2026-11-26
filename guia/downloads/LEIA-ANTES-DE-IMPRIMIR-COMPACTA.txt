@@ -1,13 +1,13 @@
-ROBÔ CONVERSA COMPACTO — peças de ESTUDO (não liberadas como finais)
+ROBÔ CONVERSA COMPACTO — peças de ESTUDO (nêo liberadas como finais)
 
 Pi 3 sem caixa + tela de 2,4" encaixada no conector de 40 pinos. Gerado por cad/gerar_compacta.py e verificado SÓ no computador.
 NADA foi fatiado, impresso nem montado.
 
-AS MEDIDAS DA TELA SÃO TÍPICAS (placa formato Pi Zero, 65 x 56,5 mm); o anúncio não traz o contorno.
+AS MEDIDAS DA TELA SêO TÍPICAS (placa formato Pi Zero, 65 x 56,5 mm); o anúncio nêo traz o contorno.
 Meça a sua tela e o seu Pi com o paquímetro. Se diferir, mude os números no topo de cad/gerar_compacta.py
 (HAT_W, HAT_H, HAT_E, JAN_W, JAN_H, EMPILHA) e rode de novo: os testes dizem se ainda cabe.
 
 Ordem: imprima a tampa (peça pequena) e teste os postes do Pi; depois a frente da cabeça; o poste e a base por último.
-Cada STL já está na posição de impressão. Escala 100%.
+Cada STL já está na posiçêo de impressêo. Escala 100%.
 Parafusos: 4 x M3x10 (tampa), 4 x M2,5x6 (Pi nos postes), 2 x M3x16 (poste na cabeça), 4 x madeira 4x25 (mesa).
 Guia: https://inematds.github.io/robo-conversa/guia/#compacta

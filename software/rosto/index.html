@@ -37,7 +37,7 @@ function quadro(now) {
   if (estado === 'feliz') {            // sorriso: apaga a metade de baixo dos olhos
     g.fillStyle = FUNDO; rr(250 + olhaX, 190 + olhaY + h * 0.22, w + 20, h * 0.5, 0); rr(550 + olhaX, 190 + olhaY + h * 0.22, w + 20, h * 0.5, 0);
   }
-  // boca: barra que abre com o NÍVEL DA RESPOSTA (o microfone não mexe nela)
+  // boca: barra que abre com o NÍVEL DA RESPOSTA (o microfone nêo mexe nela)
   g.fillStyle = AMARELO;
   if (estado === 'falando') rr(400, 395, 190, 10 + nivel * 80, 14);
   else if (estado === 'feliz') { g.beginPath(); g.arc(400, 360, 70, 0.15 * Math.PI, 0.85 * Math.PI); g.lineWidth = 14; g.lineCap = 'round'; g.strokeStyle = AMARELO; g.stroke(); }

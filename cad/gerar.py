@@ -4,7 +4,7 @@
 Executar: ../robos-impressos/.venv/bin/python cad/gerar.py   (grava estudo/)
 
 Quadro do DISPLAY (antes de inclinar): X lateral, Y para trás (frente da tela em y=0),
-Z para cima. O conjunto é então inclinado INCL graus para trás e levantado ALTURA mm.
+Z para cima. O conjunto é entêo inclinado INCL graus para trás e levantado ALTURA mm.
 Quadro do MUNDO: a base apoia em z=0. Unidade: mm.
 
 Dimensões das fontes (conferir com paquímetro nas suas peças antes de imprimir):
@@ -38,12 +38,12 @@ MOLDURA_E = 6.0                                 # espessura da moldura (frente e
 PISO_E = 5.0                                    # fundo da placa atrás da tela
 Y_PISO = TELA_E + 0.4                           # frente do piso
 Y_TRAS = Y_PISO + PISO_E                        # costas da placa (y = 12,4)
-JAN_PI_W, JAN_PI_H = 104.0, 72.0                # vão atrás da tela para a placa do driver
+JAN_PI_W, JAN_PI_H = 104.0, 72.0                # vêo atrás da tela para a placa do driver
 BOLSO_W, BOLSO_H, BOLSO_D = 100.0, 72.0, 44.0   # bolso interno da caixa do Pi
 PAREDE = 3.0
 PEDRA_Y = 10.0                                  # a placa do driver ocupa os primeiros 10 mm do bolso
 CAIXA_MAX = (98.0, 68.0, 30.5)                  # maior caixa de Pi que cabe (x, z, y)
-INCL = 12.0                                     # inclinação para trás
+INCL = 12.0                                     # inclinaçêo para trás
 ALTURA = 62.0                                   # altura da borda inferior da placa
 BASE_X, BASE_Y0, BASE_Y1, BASE_E = 105.0, -48.0, 92.0, 8.0
 
@@ -51,7 +51,7 @@ M3_FURO, M3_PILOTO, M25_PILOTO = 3.4, 2.6, 2.2
 
 # ---------------- áudio PREVISTO (microfone + alto-falante) ----------------
 # Microfone MEMS em placa pequena (ex.: INMP441, 14 x 14 mm, ~3 mm de espessura com solda): bolso no topo da
-# moldura/placa, deitado, com UM furo de som para cima (longe do alto-falante) e canal de fio até o vão do Pi.
+# moldura/placa, deitado, com UM furo de som para cima (longe do alto-falante) e canal de fio até o vêo do Pi.
 MIC_PLACA = (14.0, 14.0, 3.2)                   # x, y, z da placa do microfone (conferir a sua com paquímetro)
 MIC_BOLSO_X, MIC_Y0, MIC_Y1 = 15.0, -4.5, 10.5  # bolso: 15 mm de largura, y de -4,5 a 10,5 (quadro do display)
 MIC_Z0, MIC_Z1 = H - 8.5, H - 3.5               # bolso 5 mm de altura; 3,5 mm de pele no topo
@@ -122,7 +122,7 @@ PAR_MOLDURA = [(sx * X_PAR_LAT, z) for sx in (-1, 1) for z in (50.0, 121.0)] + \
 PAR_PESCOCO = [(sx * 30.0, z) for sx in (-1, 1) for z in (8.0, 22.0)]
 FL_X, FL_Z = 61.0, 47.0                           # meia largura/altura do flange da caixa
 PAR_CAIXA = [(sx * 57.0, ZC + sz * 43.0) for sx in (-1, 1) for sz in (-1, 1)]
-JAN_Z_TOPO = ZC + JAN_PI_H / 2                    # topo do vão do driver (onde o canal do microfone começa)
+JAN_Z_TOPO = ZC + JAN_PI_H / 2                    # topo do vêo do driver (onde o canal do microfone começa)
 
 
 def moldura():
@@ -149,7 +149,7 @@ def placa():
         s -= furo(x, z, Y_TRAS - 9.0, 9.1, M3_PILOTO)
     s -= box(-MIC_BOLSO_X / 2, MIC_BOLSO_X / 2, -0.5, MIC_Y1, MIC_Z0, MIC_Z1)               # bolso do microfone (metade de trás)
     s -= Manifold.cylinder(6.0, MIC_PORTA_D / 2, MIC_PORTA_D / 2, 24).translate([0, MIC_PORTA_Y, MIC_Z1 - 0.5])   # furo de som, para cima
-    s -= box(-3, 3, 8.6, 11.4, JAN_Z_TOPO - 0.5, MIC_Z0 + 0.5)                              # canal interno do fio até o vão do Pi
+    s -= box(-3, 3, 8.6, 11.4, JAN_Z_TOPO - 0.5, MIC_Z0 + 0.5)                              # canal interno do fio até o vêo do Pi
     return s
 
 
@@ -172,7 +172,7 @@ def caixa():
             partes.append(box(cx - 4, cx + 4, ay - 6, ay, cz - 4, cz + 4))
     s = union(partes)
     s -= slab(-BOLSO_W / 2, BOLSO_W / 2, ZC - BOLSO_H / 2, ZC + BOLSO_H / 2, y0 - 1, y1 + 1, 2)
-    # o flange não pode tapar o vão para a placa do driver
+    # o flange nêo pode tapar o vêo para a placa do driver
     # saída de USB/Ethernet: lateral direita; cabos e portas: parede de baixo
     s -= box(BOLSO_W / 2 - 1, ext_x + 1, y0 + PEDRA_Y + 4, y1 + 1, ZC - 31, ZC + 31)
     s -= box(-48, 36, y0 + 6, y1 + 1, ZC - ext_z - 1, ZC - BOLSO_H / 2 + 1)
@@ -191,7 +191,7 @@ def tampa():
     s = slab(-FL_X, FL_X, ZC - FL_Z, ZC + FL_Z, y0, y0 + 3, 6)
     for x, z in PAR_CAIXA:
         s -= furo(x, z, y0 - 1, 5, M3_FURO)
-    for i in range(-5, 6):                                    # ventilação do Pi
+    for i in range(-5, 6):                                    # ventilaçêo do Pi
         s -= slab(i * 9 - 2, i * 9 + 2, ZC - 28, ZC + 28, y0 - 1, y0 + 4, 2)
     return s
 
@@ -280,7 +280,7 @@ def pescoco_e_base():
     return s + rel
 
 
-# ---------------- montagem e verificação ----------------
+# ---------------- montagem e verificaçêo ----------------
 def principal():
     P = {'moldura': moldura(), 'placa': placa(), 'caixa': caixa(), 'tampa': tampa(), 'adaptador': adaptador()}
     P['pescoco_base'] = None
@@ -298,7 +298,7 @@ def rot(angulo, eixo=(1, 0, 0)):
     return trimesh.transformations.rotation_matrix(np.radians(angulo), eixo)
 
 
-# orientação de impressão: ângulo em torno de X aplicado ao quadro do display
+# orientaçêo de impressêo: ângulo em torno de X aplicado ao quadro do display
 IMPRESSAO = {'moldura': -90, 'placa': -90, 'caixa': 90, 'tampa': 90, 'adaptador': 90, 'pescoco_base': 0, 'modulo_som': 180}
 NOME = {'moldura': 'moldura', 'placa': 'placa-traseira', 'caixa': 'bolso-do-pi', 'tampa': 'tampa',
         'adaptador': 'adaptador-pi-sem-caixa', 'pescoco_base': 'base-e-pescoco', 'modulo_som': 'caixa-do-alto-falante'}
@@ -308,7 +308,7 @@ def verificar():
     P = principal()
     P['pescoco_base'] = pescoco_e_base()
     P['modulo_som'] = modulo_som()
-    rel = {'status': 'estudo; não liberado para impressão final', 'pecas': {}, 'checagens': {},
+    rel = {'status': 'estudo; nêo liberado para impressêo final', 'pecas': {}, 'checagens': {},
            'parametros': {'tela_mm': [TELA_W, TELA_H], 'janela_mm': [JANELA_W, JANELA_H], 'inclinacao_graus': INCL,
                           'altura_borda_inferior_mm': ALTURA, 'bolso_caixa_mm': [BOLSO_W, BOLSO_H, BOLSO_D],
                           'caixa_maxima_mm': list(CAIXA_MAX),
@@ -354,7 +354,7 @@ def verificar():
             v = (P[q] ^ env).volume()
             rel['checagens'][f'interferencia_{nm}_{q}_mm3'] = round(v, 4)
             assert v < tol, (nm, q, v)
-    # tela precisa estar APOIADA no piso e coberta pela moldura (contato de borda, sem sobreposição)
+    # tela precisa estar APOIADA no piso e coberta pela moldura (contato de borda, sem sobreposiçêo)
     # Pi sem caixa: adaptador + placa do Pi + componentes
     for q in ['caixa', 'tampa', 'placa', 'moldura']:
         v = (P[q] ^ pi_nu).volume()
@@ -395,23 +395,23 @@ def verificar():
     contato = (P['placa'] ^ toque).volume()
     rel['checagens']['contato_pescoco_queixo_mm3'] = round(contato, 1)
     assert contato > 0.8 * 80 * 28 * 0.2 * 0.8, contato
-    # cabos: um cilindro de 12 mm desce do vão de baixo da caixa até a saída do pescoço
+    # cabos: um cilindro de 12 mm desce do vêo de baixo da caixa até a saída do pescoço
     cabo = Manifold.cylinder(ZC - 30 + 35, 6, 6, 32).translate([0, Y_TRAS + 17, -35])
     for q in ['moldura', 'placa', 'caixa', 'tampa']:
         assert (P[q] ^ cabo).volume() < tol, ('cabo', q)
     assert (mundo(cabo) ^ P['pescoco_base']).volume() < tol, 'cabo × pescoço'
-    rel['checagens']['corredor_de_cabos_12mm'] = 'livre: vão da caixa → boca do pescoço (sem colisão com nenhuma peça)'
+    rel['checagens']['corredor_de_cabos_12mm'] = 'livre: vêo da caixa → boca do pescoço (sem colisêo com nenhuma peça)'
     saida = box(-13, 13, 40, 60, 9, 23)
     moldura_saida = box(-16, 16, 40, 60, 6, 26)
     livre = (saida ^ P['pescoco_base']).volume()
     parede = (moldura_saida ^ P['pescoco_base']).volume()
     assert livre < tol and parede > 100, (livre, parede)
-    rel['checagens']['saida_de_cabos_atras'] = f'aberta (0 mm³ dentro do vão) e cercada pela parede ({parede:.0f} mm³ ao redor)'
+    rel['checagens']['saida_de_cabos_atras'] = f'aberta (0 mm³ dentro do vêo) e cercada pela parede ({parede:.0f} mm³ ao redor)'
     # ---- áudio: microfone ----
     mic = box(-MIC_PLACA[0] / 2, MIC_PLACA[0] / 2, MIC_Y0 + 0.5, MIC_Y0 + 0.5 + MIC_PLACA[1], MIC_Z0 + 0.7, MIC_Z0 + 0.7 + MIC_PLACA[2])
     porta = Manifold.cylinder(MIC_Z1 + 3 - (MIC_Z0 + 0.7 + MIC_PLACA[2]), MIC_PORTA_D / 2 - 0.05, MIC_PORTA_D / 2 - 0.05, 24)\
         .translate([0, MIC_PORTA_Y, MIC_Z0 + 0.7 + MIC_PLACA[2]])
-    fio = box(-2, 2, 9, 10.4, JAN_Z_TOPO, MIC_Z0 + 0.4)      # fio de 4 x 1,4 mm: do vão do Pi ao bolso, dentro do canal
+    fio = box(-2, 2, 9, 10.4, JAN_Z_TOPO, MIC_Z0 + 0.4)      # fio de 4 x 1,4 mm: do vêo do Pi ao bolso, dentro do canal
     for q in ['moldura', 'placa', 'caixa', 'tampa']:
         for nm, env in [('placa_do_microfone', mic), ('caminho_do_som', porta), ('fio_do_microfone', fio)]:
             v = (P[q] ^ env).volume()
@@ -440,7 +440,7 @@ def verificar():
     assert v < tol, ('caixa do alto-falante × base', v)
     cabo_som = box(POD_X1 - 4, -35, 11, 17, POD_Z0 + 2.5, 15)
     assert (pod ^ cabo_som).volume() < tol and (P['pescoco_base'] ^ cabo_som).volume() < tol, 'cabo do alto-falante'
-    rel['checagens']['cabo_do_alto_falante_ate_o_pescoco'] = 'livre: saída da caixa → janela do pescoço → vão interno'
+    rel['checagens']['cabo_do_alto_falante_ate_o_pescoco'] = 'livre: saída da caixa → janela do pescoço → vêo interno'
     # o furo de som do topo da caixa precisa estar aberto (cilindro vertical livre sobre o centro)
     grade = Manifold.cylinder(POD_TOPO + 1.0, 1.4, 1.4, 16).translate([POD_CX, POD_CY, POD_Z1 - POD_TOPO - 0.5])
     assert (pod ^ grade).volume() < tol, 'grade fechada'
@@ -465,17 +465,17 @@ def verificar():
                                         'margem_ate_a_borda_dianteira_mm': round(margem_frente, 1),
                                         'forca_no_topo_que_tomba_para_tras_N_sem_parafusos': round(tomba_tras, 1),
                                         'altura_do_topo_mm': round(altura_topo, 1)}
-    assert abs(cg[0]) < 12, cg           # a caixa só de um lado não pode tirar o robô do eixo
+    assert abs(cg[0]) < 12, cg           # a caixa só de um lado nêo pode tirar o robô do eixo
     assert margem_frente > 30 and margem_tras > 30
     rel['limites'] = [
-        'Sem fatiamento nem teste físico: os STL são de ESTUDO.',
-        'Contorno da tela, posição da área visível, furos e conectores vêm da folha de dados; conferir com paquímetro.',
+        'Sem fatiamento nem teste físico: os STL sêo de ESTUDO.',
+        'Contorno da tela, posiçêo da área visível, furos e conectores vêm da folha de dados; conferir com paquímetro.',
         'A tela oficial de 7" (800x480) é a de referência. A Touch Display 2 tem outro contorno (189,5 x 120 mm): mudar os parâmetros.',
-        'A placa do driver da tela e os parafusos reais não foram modelados; foi reservado um vão de 104 x 72 x 10 mm.',
-        'O espaço para a caixa do Pi é um limite (98 x 68 x 30,5 mm), não o desenho de uma caixa específica.',
+        'A placa do driver da tela e os parafusos reais nêo foram modelados; foi reservado um vêo de 104 x 72 x 10 mm.',
+        'O espaço para a caixa do Pi é um limite (98 x 68 x 30,5 mm), nêo o desenho de uma caixa específica.',
         'Estabilidade estimada com massas aproximadas; sem os parafusos na mesa um toque firme pode tombar o robô.',
-        'Microfone e alto-falante são PREVISTOS no desenho (bolso, furo de som, canal de fio e caixa ao lado do pescoço); nenhum foi ligado nem testado com som real.',
-        'Placa do microfone (14 x 14 x 3,2 mm) e alto-falante (40 mm, 20 mm de profundidade) são medidas típicas: conferir as suas peças com paquímetro.',
+        'Microfone e alto-falante sêo PREVISTOS no desenho (bolso, furo de som, canal de fio e caixa ao lado do pescoço); nenhum foi ligado nem testado com som real.',
+        'Placa do microfone (14 x 14 x 3,2 mm) e alto-falante (40 mm, 20 mm de profundidade) sêo medidas típicas: conferir as suas peças com paquímetro.',
         'Microfone perto do alto-falante pode captar a própria voz: o software pausa a escuta enquanto fala, mas só o teste real prova.',
         'Sem análise de resistência dos pilotos de parafuso nem de aquecimento do Pi dentro do bolso.']
     (OUT / 'verificacao.json').write_text(json.dumps(rel, ensure_ascii=False, indent=2) + '\n')
@@ -496,7 +496,7 @@ if __name__ == '__main__':
         m.visual.face_colors = COR[k]
         scene.add_geometry(m, node_name=k)
     scene.export(OUT / 'montagem-ESTUDO.glb')
-    # peças na posição de montagem (mundo) para o render
+    # peças na posiçêo de montagem (mundo) para o render
     pasta = OUT / 'partes-mundo'
     pasta.mkdir(exist_ok=True)
     for k, v in W_.items():
@@ -504,7 +504,7 @@ if __name__ == '__main__':
     mesh(mundo(env['tela'])).export(pasta / 'tela.stl')
     mesh(mundo(env['caixa_pi'])).export(pasta / 'caixa_pi.stl')
     mesh(mundo(env['driver'])).export(pasta / 'driver.stl')
-    # Pi sem caixa (representação simples: placa + bloco USB/Ethernet) para o render
+    # Pi sem caixa (representaçêo simples: placa + bloco USB/Ethernet) para o render
     y_ap = Y_TRAS + PEDRA_Y + 3.0
     pi_placa = box(-38.5, 46.5, y_ap + 8, y_ap + 9.6, ZC - 28, ZC + 28)
     pi_usb = box(26.5, 46.5, y_ap + 9.6, y_ap + 26, ZC - 24, ZC + 17)

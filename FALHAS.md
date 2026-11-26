@@ -1,6 +1,6 @@
 # FALHAS — robo-conversa
 
-| data | o que quebrou | menor correção | prompt \| infra |
+| data | o que quebrou | menor correçêo | prompt \| infra |
 |---|---|---|---|
 | 21/11/2026 | Pescoço sem furo de passagem para os 4 parafusos (revisor achou; o código só tinha os pilotos na placa) | furos M3 na parede da frente + teste de cilindro livre | prompt |
 | 21/11/2026 | Contagem "6 peças (5 em cada montagem)" errada e "caixa do Pi" com dois sentidos | "5–6 peças" e o STL virou "bolso do Pi" | prompt |

@@ -1,5 +1,5 @@
 {
-  "status": "estudo; não liberado para impressão final",
+  "status": "estudo; nêo liberado para impressêo final",
   "pecas": {
     "moldura": {
       "malha_fechada": true,
@@ -118,8 +118,8 @@
     "retirada_da_caixa_pelas_costas": "passou (3 posições) para o envelope retangular, tampa removida",
     "parafusos_do_pescoco_passam_pela_parede": "passou (4 posições, cilindro de 2,8 mm livre)",
     "contato_pescoco_queixo_mm3": 443.8,
-    "corredor_de_cabos_12mm": "livre: vão da caixa → boca do pescoço (sem colisão com nenhuma peça)",
-    "saida_de_cabos_atras": "aberta (0 mm³ dentro do vão) e cercada pela parede (1280 mm³ ao redor)",
+    "corredor_de_cabos_12mm": "livre: vêo da caixa → boca do pescoço (sem colisêo com nenhuma peça)",
+    "saida_de_cabos_atras": "aberta (0 mm³ dentro do vêo) e cercada pela parede (1280 mm³ ao redor)",
     "estabilidade": {
       "massa_estimada_g": 673,
       "centro_de_massa_mm": [
@@ -156,11 +156,11 @@
     ]
   },
   "limites": [
-    "Sem fatiamento nem teste físico: os STL são de ESTUDO.",
-    "Contorno da tela, posição da área visível, furos e conectores vêm da folha de dados; conferir com paquímetro.",
+    "Sem fatiamento nem teste físico: os STL sêo de ESTUDO.",
+    "Contorno da tela, posiçêo da área visível, furos e conectores vêm da folha de dados; conferir com paquímetro.",
     "A tela oficial de 7\" (800x480) é a de referência. A Touch Display 2 tem outro contorno (189,5 x 120 mm): mudar os parâmetros.",
-    "A placa do driver da tela e os parafusos reais não foram modelados; foi reservado um vão de 104 x 72 x 10 mm.",
-    "O espaço para a caixa do Pi é um limite (98 x 68 x 30,5 mm), não o desenho de uma caixa específica.",
+    "A placa do driver da tela e os parafusos reais nêo foram modelados; foi reservado um vêo de 104 x 72 x 10 mm.",
+    "O espaço para a caixa do Pi é um limite (98 x 68 x 30,5 mm), nêo o desenho de uma caixa específica.",
     "Estabilidade estimada com massas aproximadas; sem os parafusos na mesa um toque firme pode tombar o robô.",
     "Sem análise de resistência dos pilotos de parafuso nem de aquecimento do Pi dentro do bolso."
   ]

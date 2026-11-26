@@ -4,11 +4,11 @@
 Sem navegador. Precisa só de Pillow e numpy (no Pi: sudo apt install python3-pil python3-numpy).
 Fala com a ponte (ponte/robo.py) pelos mesmos pontos do rosto de navegador: lê /estado (SSE) e manda /ouvir e /parar.
 
-  ROSTO_URL    padrão http://127.0.0.1:8765
-  ROSTO_FB     framebuffer da tela (padrão /dev/fb1; confira com `ls /dev/fb*`)
-  ROSTO_LARG / ROSTO_ALT   tamanho da tela (padrão 320 x 240)
+  ROSTO_URL    padrêo http://127.0.0.1:8765
+  ROSTO_FB     framebuffer da tela (padrêo /dev/fb1; confira com `ls /dev/fb*`)
+  ROSTO_LARG / ROSTO_ALT   tamanho da tela (padrêo 320 x 240)
   ROSTO_TOQUE  dispositivo do toque, ex. /dev/input/event0 (confira com `ls /dev/input/by-path`); sem ele, sem toque
-  ROSTO_GIRO   0, 90, 180 ou 270 (padrão 0): gira o desenho se a tela estiver montada de lado
+  ROSTO_GIRO   0, 90, 180 ou 270 (padrêo 0): gira o desenho se a tela estiver montada de lado
 
 Prévia sem tela:  python3 rosto_fb.py --png falando /tmp/rosto.png
 """
@@ -36,7 +36,7 @@ class Rosto:
     def quadro(self, t=None, aleatorio=True):
         t = (time.time() - self.t0) if t is None else t
         w, h = self.w, self.h
-        k = w / 320.0                                    # escala em relação ao desenho base de 320 x 240
+        k = w / 320.0                                    # escala em relaçêo ao desenho base de 320 x 240
         im = Image.new('RGB', (w, h), FUNDO)
         d = ImageDraw.Draw(im)
         if t > self.prox_piscar:
@@ -61,7 +61,7 @@ class Rosto:
             d.rounded_rectangle([x0, y0, x0 + ew, y0 + eh], radius=min(18 * k, eh / 2), fill=AMARELO)
             if self.estado == 'feliz':                   # sorriso: apaga a metade de baixo dos olhos
                 d.rectangle([x0 - 2, cy + self.olha[1] + eh * 0.1, x0 + ew + 2, y0 + eh + 2], fill=FUNDO)
-        if self.estado == 'falando':                     # boca abre com o NÍVEL DA RESPOSTA (o microfone não mexe nela)
+        if self.estado == 'falando':                     # boca abre com o NÍVEL DA RESPOSTA (o microfone nêo mexe nela)
             bh = 5 * k + self.nivel * 34 * k
             d.rounded_rectangle([160 * k - 38 * k, 178 * k - bh / 2, 160 * k + 38 * k, 178 * k + bh / 2], radius=6 * k, fill=AMARELO)
         elif self.estado == 'feliz':

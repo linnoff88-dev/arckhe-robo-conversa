@@ -1,4 +1,4 @@
-"""Prévia rápida (Workbench) das peças em posição de montagem.
+"""Prévia rápida (Workbench) das peças em posiçêo de montagem.
 blender -b -P scripts/previa.py -- estudo/partes-mundo estudo/previa
 """
 import sys, math

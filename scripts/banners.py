@@ -1,4 +1,4 @@
-"""Banners do guia a partir do render real (sem arte de IA: o robô ainda não foi impresso)."""
+"""Banners do guia a partir do render real (sem arte de IA: o robô ainda nêo foi impresso)."""
 from PIL import Image, ImageDraw, ImageFont
 B = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'; R = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 def banner(t1, t2, out, grade):

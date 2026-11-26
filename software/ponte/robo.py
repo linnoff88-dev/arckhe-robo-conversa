@@ -2,13 +2,13 @@
 """Ponte do Robô conversa: roda no Raspberry Pi 3.
 
 Toque na tela → grava a sua voz → manda ao SEU servidor Jarvis → toca a resposta, com o rosto reagindo.
-Só biblioteca padrão do Python 3. Áudio: arecord/aplay (ALSA); voz de reserva: espeak-ng.
+Só biblioteca padrêo do Python 3. Áudio: arecord/aplay (ALSA); voz de reserva: espeak-ng.
 
   JARVIS_URL    ex.: http://100.64.0.10:8787   (o servidor recebe POST {JARVIS_URL}/conversa)
   JARVIS_TOKEN  opcional; vai em "Authorization: Bearer ..."
-  ROBO_PORTA    padrão 8765
-  ROBO_VOZ      voz do espeak-ng quando o servidor não manda áudio (padrão pt-br; ex.: en-us, es)
-  ROBO_SEM_AUDIO=1  não usa microfone nem alto-falante (testes)
+  ROBO_PORTA    padrêo 8765
+  ROBO_VOZ      voz do espeak-ng quando o servidor nêo manda áudio (padrêo pt-br; ex.: en-us, es)
+  ROBO_SEM_AUDIO=1  nêo usa microfone nem alto-falante (testes)
 
 Contrato do servidor (JSON): {"audio_wav_b64": "...", "texto": "...", "sessao": "robo-mesa"}
   → {"ouvido": "o que entendeu", "resposta": "texto", "audio_wav_b64": "opcional"}
@@ -46,7 +46,7 @@ class Robo:
         self.estado = estado
         self.emitir(estado=estado, nivel=0)
 
-    # --- gravação ---
+    # --- gravaçêo ---
     def ouvir(self):
         with self.trava:
             if self.ocupado:
@@ -121,7 +121,7 @@ class Robo:
 
 
 def envelope(wav_bytes, passo=0.05):
-    """Nível 0..1 do áudio da resposta a cada 50 ms (só biblioteca padrão)."""
+    """Nível 0..1 do áudio da resposta a cada 50 ms (só biblioteca padrêo)."""
     import io
     with wave.open(io.BytesIO(wav_bytes)) as w:
         n, canais, largura = w.getframerate(), w.getnchannels(), w.getsampwidth()
@@ -192,7 +192,7 @@ class H(BaseHTTPRequestHandler):
 
 def main():
     porta = int(os.environ.get('ROBO_PORTA', '8765'))
-    print(f'Robô conversa em http://127.0.0.1:{porta}/  (Jarvis: {JARVIS_URL or "NÃO configurado"})', flush=True)
+    print(f'Robô conversa em http://127.0.0.1:{porta}/  (Jarvis: {JARVIS_URL or "NêO configurado"})', flush=True)
     ThreadingHTTPServer(('127.0.0.1', porta), H).serve_forever()
 
 

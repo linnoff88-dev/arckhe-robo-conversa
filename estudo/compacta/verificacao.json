@@ -1,5 +1,5 @@
 {
-  "status": "estudo 02 (compacto); medidas da tela são típicas e NÃO confirmadas",
+  "status": "estudo 02 (compacto); medidas da tela sêo típicas e NêO confirmadas",
   "pecas": {
     "cabeca-frente": {
       "malha_fechada": true,
@@ -93,11 +93,11 @@
     ]
   },
   "limites": [
-    "Estudo: sem fatiamento nem teste físico. As medidas da tela 2,4\" são TÍPICAS (formato Pi Zero 65 x 56,5 mm); o anúncio não traz o contorno.",
+    "Estudo: sem fatiamento nem teste físico. As medidas da tela 2,4\" sêo TÍPICAS (formato Pi Zero 65 x 56,5 mm); o anúncio nêo traz o contorno.",
     "Se a placa da tela tiver o tamanho do Pi (85 x 56 mm) ou outro conector, mude HAT_W/HAT_H/HAT_DX/EMPILHA e rode de novo: os testes mostram se ainda cabe.",
-    "A janela está centrada na placa da tela; confira a posição real da área visível.",
+    "A janela está centrada na placa da tela; confira a posiçêo real da área visível.",
     "Os postes de M2,5 (58 x 49 mm) seguram o Pi pela tampa; a tela fica presa só pelo conector de 40 pinos (use espaçadores M2,5 se vier com furos).",
     "O microfone USB sai pela lateral direita; o alto-falante é o da própria placa da tela (áudio por PWM, qualidade simples).",
-    "Cabeça reta, sem inclinação. Sem análise de aquecimento do Pi no interior fechado: a tampa tem fendas de ventilação."
+    "Cabeça reta, sem inclinaçêo. Sem análise de aquecimento do Pi no interior fechado: a tampa tem fendas de ventilaçêo."
   ]
 }
