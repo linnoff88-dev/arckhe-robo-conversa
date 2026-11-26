@@ -16,7 +16,7 @@ class T(unittest.TestCase):
             r = rosto_fb.Rosto(320, 240); r.estado = e; r.nivel = r.nivel_alvo = 0.7
             im = r.quadro(t=0.5, aleatorio=False)
             self.assertEqual(im.size, (320, 240))
-            self.assertIn(rosto_fb.AMARELO, set(im.getdata()))     # tem amarelo INEMA no rosto
+            self.assertIn(rosto_fb.AMARELO, set(im.getdata()))     # tem amarelo ARCKHÉ no rosto
             vistos[e] = im.tobytes()
         self.assertEqual(len(set(vistos.values())), 6)             # cada estado tem desenho próprio
 

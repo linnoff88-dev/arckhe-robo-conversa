@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 R = Path(__file__).resolve().parents[1] / 'guia'
-BASE = 'https://inematds.github.io/robo-conversa/guia/'
+BASE = 'https://linnoff88-dev.github.io/arckhe-/guia/'
 for lang, p, url, ban in [('pt', R / 'index.html', BASE, 'banner.jpg'), ('en', R / 'en/index.html', BASE + 'en/', 'banner-en.jpg'),
                           ('es', R / 'es/index.html', BASE + 'es/', 'banner-es.jpg')]:
     s = p.read_text()

@@ -29,7 +29,7 @@ TELA_W, TELA_H, TELA_E = 194.0, 111.0, 7.0      # contorno da tela (com folga) e
 JANELA_W, JANELA_H = 158.0, 90.0                # abertura da moldura sobre a área visível (155 x 86)
 FOLGA = 0.4                                     # folga lateral por lado
 BORDA_X = 10.0                                  # moldura além da tela, por lado
-CHIN = 30.0                                     # queixo abaixo da tela (INEMA + pescoço)
+CHIN = 30.0                                     # queixo abaixo da tela (ARCKHÉ + pescoço)
 TOPO = 10.0
 W = TELA_W + 2 * BORDA_X                        # 214
 H = CHIN + TELA_H + TOPO                        # 151
@@ -100,7 +100,7 @@ def mundo(solid):
     return solid.rotate([-INCL, 0, 0]).translate([0, 0, ALTURA])
 
 
-def texto(largura, texto_='INEMA'):
+def texto(largura, texto_='ARCKHÉ'):
     """Contorno do texto em (x, a) com a = -z (para slab-like); engrossado 0,2 mm por lado."""
     font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 200)
     b = font.getbbox(texto_)
@@ -274,7 +274,7 @@ def pescoco_e_base():
         for y in (BASE_Y0 + 16, BASE_Y1 - 16):
             s -= Manifold.cylinder(BASE_E + 2, 2.3, 2.3, 24).translate([sx * 87, y, -1])
             s -= Manifold.cylinder(3.0, 2.3, 4.8, 24).translate([sx * 87, y, BASE_E - 3.0])
-    # INEMA em relevo na frente da base
+    # ARCKHÉ em relevo na frente da base
     # o contorno vem com a = linha para baixo; no plano XY da base y cresce para trás → inverter
     rel = texto(70.0).mirror([0, 1]).extrude(1.35).translate([0, BASE_Y0 + 24, BASE_E - 0.15])
     return s + rel

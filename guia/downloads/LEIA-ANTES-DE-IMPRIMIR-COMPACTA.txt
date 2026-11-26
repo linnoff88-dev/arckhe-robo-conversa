@@ -10,4 +10,4 @@ Meça a sua tela e o seu Pi com o paquímetro. Se diferir, mude os números no t
 Ordem: imprima a tampa (peça pequena) e teste os postes do Pi; depois a frente da cabeça; o poste e a base por último.
 Cada STL já está na posiçêo de impressêo. Escala 100%.
 Parafusos: 4 x M3x10 (tampa), 4 x M2,5x6 (Pi nos postes), 2 x M3x16 (poste na cabeça), 4 x madeira 4x25 (mesa).
-Guia: https://inematds.github.io/robo-conversa/guia/#compacta
+Guia: https://linnoff88-dev.github.io/arckhe-/guia/#compacta

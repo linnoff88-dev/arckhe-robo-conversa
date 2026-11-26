@@ -18,5 +18,5 @@ Parafusos: 6 x M3x16 (moldura), 4 x M3x12 (pescoço), 4 x M3x8 (bolso na placa),
 4 x M3x10 (tampa), 4 x madeira 4x25 (mesa). Sem caixa de Pi: adaptador com 4 x M3x8
 e 4 x M2,5x6 nos postes.
 
-Guia completo: https://inematds.github.io/robo-conversa/guia/
-Se algo nêo casar, abra uma ficha em https://github.com/inematds/robo-conversa/issues
+Guia completo: https://linnoff88-dev.github.io/arckhe-/guia/
+Se algo nêo casar, abra uma ficha em https://github.com/linnoff88-dev/robo-conversa/issues

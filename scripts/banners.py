@@ -13,7 +13,7 @@ def banner(t1, t2, out, grade):
     for l in t1: d.text((70, y), l, font=f1, fill='#FACC15'); y += 90
     y += 24
     for l in t2: d.text((70, y), l, font=f2, fill='#f1f1f3'); y += 48
-    d.text((70, 810), 'INEMA.CLUB', font=f2, fill='#FACC15')
+    d.text((70, 810), 'ARCKHÉ AI', font=f2, fill='#FACC15')
     im.save(out, quality=88, optimize=True)
     im.resize((1200, 675)).save(grade, quality=86, optimize=True)
 banner(['Robô que', 'conversa na', 'sua mesa'], ['Raspberry Pi 3 + tela de 7"', 'Suporte impresso em 3D'], 'guia/assets/banner.jpg', 'guia/assets/banner-grade.jpg')

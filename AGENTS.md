@@ -7,5 +7,5 @@ Leia README.md (seçêo "O processo") antes de agir.
 - O robô só chama o servidor de `JARVIS_URL`. Sem APIs externas sem autorizaçêo explícita; nenhuma chave no repo.
 - Duas versões: grande (7″, `cad/gerar.py`, com bolso de microfone e caixa de alto-falante) e compacta (2,4″ no GPIO + microfone USB, `cad/gerar_compacta.py`, rosto em `software/rosto/rosto_fb.py`). Medidas da tela de 2,4″ sêo TÍPICAS até alguém medir.
 - Gerar e conferir: `../robos-impressos/.venv/bin/python cad/gerar.py`; testes: `python3 software/testes/test_ponte.py` e `python3 software/testes/test_rosto_fb.py`.
-- Autor dos commits: inematds <inematds@gmail.com>. Push por SSH (workflow).
+- Autor dos commits: linnoff88-dev <linnoff88-dev@gmail.com>. Push por SSH (workflow).
 - Vídeo do guia: entra depois na marca `<!-- VIDEO -->` (explicavideo com avatar, 3 idiomas).

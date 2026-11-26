@@ -2,7 +2,7 @@
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
-[![Robô conversa](guia/assets/banner.jpg)](https://inematds.github.io/robo-conversa/guia/en/)
+[![Robô conversa](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/en/)
 
 **[Português](README.md) · [English](README.en.md) · [Español](README.es.md)**
 
@@ -14,7 +14,7 @@ A desktop robot that listens and responds. A Raspberry Pi 3 sits behind the offi
 
 ## Guide and downloads
 
-**https://inematds.github.io/robo-conversa/guia/en/**
+**https://linnoff88-dev.github.io/arckhe-/guia/en/**
 
 Includes a render of the actual model, an interactive 3D model, dimensions, a bill of materials, STL, a ZIP of the parts, a ZIP of the software, and step-by-step instructions for printing, assembly, and software.
 
@@ -30,10 +30,10 @@ Who does what: 🧠 session with Nei · ⚙️ script · 🤖 `claude -p`.
 6. ⚙️ Banners from the actual render: `python3 scripts/banners.py` (no AI artwork: the robot has not been printed yet).
 7. 🧠 Software: `python3 software/testes/test_ponte.py` (4 tests; starts a fake Jarvis, checks states, token, mouth, and server failure).
 8. 🧠 Copy STL, GLB, and `verificacao.json` to `guia/downloads/` and rebuild both ZIPs (parts and software).
-9. 🧠 Write the PT guide (`python3 scripts/monta_guia.py` → `guia/index.html`); ⚙️ translate to EN/ES: `python3 ~/projetos/wifi/scripts/traduz-pagina-codex.py html --base guia --pages index.html --langs en es --site-url https://inematds.github.io/robo-conversa/guia/en/` and then `python3 scripts/pos_guia.py`.
+9. 🧠 Write the PT guide (`python3 scripts/monta_guia.py` → `guia/index.html`); ⚙️ translate to EN/ES: `python3 ~/projetos/wifi/scripts/traduz-pagina-codex.py html --base guia --pages index.html --langs en es --site-url https://linnoff88-dev.github.io/arckhe-/guia/en/` and then `python3 scripts/pos_guia.py`.
 10. 🤖 Independent guide reviewer; check at 360 px and 1280 px over local HTTP.
-11. 🧠 Commit and push (author inematds); GitHub Pages publishes automatically. Push over SSH (the HTTPS token does not have the `workflow` scope).
-12. 🧠 Portal (inema.club) and INEMA.ROBOT topic; the guide video will be added later at the `<!-- VIDEO -->` marker.
+11. 🧠 Commit and push (author linnoff88-dev); GitHub Pages publishes automatically. Push over SSH (the HTTPS token does not have the `workflow` scope).
+12. 🧠 Portal (ARCKHÉ AI) and ARCKHÉ.ROBOT topic; the guide video will be added later at the `<!-- VIDEO -->` marker.
 13. 🧠 Compact version (2.4″ GPIO screen, USB microphone): `../robos-impressos/.venv/bin/python cad/gerar_compacta.py` (writes `estudo/compacta/`); small-screen face: `python3 software/testes/test_rosto_fb.py` (7 tests) and `python3 software/rosto/rosto_fb.py --png <state> x.png`.
 14. 🧠 Pending: print, measure (the 2.4″ screen uses TYPICAL dimensions), and assemble; expose `/conversa` in Jarvis; real test with a microphone and speaker.
 
